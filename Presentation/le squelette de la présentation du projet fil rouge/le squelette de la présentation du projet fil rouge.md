@@ -1,458 +1,206 @@
 ---
-
 marp: true
 theme: gaia
 paginate: true
---------------
+---
 
-# Projet de fin d'études
-
-### Présentation du projet
-
-**Équipe :** …
-**Encadrant :** …
-**Année :** 2026–2027
+# Plan de présentation
 
 ---
 
-# Introduction générale
-
-### Le projet en quelques mots
-
-* Contexte
-* Problématique
-* Solution proposée
-* Méthodologie
-* Architecture
-* Réalisation
+# — Page de garde
 
 ---
 
-# Contexte du projet
-
-### Environnement
-
-* Besoin d'une solution numérique
-* Processus actuellement complexes
-* Gestion de plusieurs acteurs
-* Nécessité d'une plateforme centralisée
+# — Introduction générale
 
 ---
 
-# Défis opérationnels
+# 1. Contexte du projet
+---
 
-### Principales difficultés
-
-* Gestion des ressources
-* Gestion des clients
-* Suivi des commandes
-* Communication en temps réel
-* Gestion des paiements
+##  Contexte du projet
 
 ---
 
-# Objectifs de la solution
-
-### Objectifs principaux
-
-* Centraliser les opérations
-* Automatiser les tâches
-* Améliorer l'expérience client
-* Faciliter le travail du personnel
-* Préparer une solution évolutive
+##  Défis opérationnels
 
 ---
 
-# Définition du problème
-
-### Problématique
-
-**Comment concevoir une plateforme capable de centraliser les opérations, simplifier la gestion et améliorer l'expérience des différents acteurs ?**
+##  Objectifs de la solution
 
 ---
 
-# Scrum
-
-### Méthodologie agile
-
-* Travail en sprints
-* Priorisation des fonctionnalités
-* Livraisons progressives
-* Feedback continu
-* Adaptation aux besoins
-
-![bg right:45%](figures/scrum.png)
+##  — Définition du problème
 
 ---
 
-# Design Thinking
-
-### Approche centrée utilisateur
-
-**Empathie → Définition → Idéation → Prototype → Test**
-
-* Comprendre les utilisateurs
-* Identifier leurs besoins
-* Concevoir une solution adaptée
-
-![bg right:45%](figures/design-thinking.png)
+# 2. Méthode de travail
 
 ---
 
-# 2TUP
+## — Scrum
 
-### Processus de développement
-
-* Branche fonctionnelle
-* Branche technique
-* Conception progressive
-* Intégration des deux branches
-
-![bg right:45%](figures/2tup.png)
+**Figure 1 — Méthodologie Scrum**
 
 ---
 
-# Gestion des tâches
+## — Design Thinking
 
-### Organisation du projet
-
-* Découpage des fonctionnalités
-* Priorisation
-* Attribution des tâches
-* Suivi de l'avancement
-* Respect des délais
-
-![bg right:50%](figures/gantt.png)
+**Figure 2 — Design Thinking**
 
 ---
 
-# Empathie
+## — 2TUP
 
-### Comprendre les utilisateurs
-
-* Identifier les besoins
-* Comprendre les difficultés
-* Observer les comportements
-* Recueillir les attentes
+**Figure 3 — Processus 2TUP**
 
 ---
 
-# Profil : le client
+# 3. Gestion des tâches
+---
 
-### Besoins principaux
+## — Gestion des tâches
 
-* Simplicité
-* Rapidité
-* Disponibilité
-* Transparence
-* Expérience fluide
+**Figure 4 — Diagramme de Gantt**
 
 ---
 
-# Profil : le personnel
+# 4. Branche fonctionnelle
+---
 
-### Besoins principaux
-
-* Organisation
-* Gestion efficace
-* Informations en temps réel
-* Réduction des tâches répétitives
-* Outils centralisés
+## — Empathie
 
 ---
 
-# Synthèse de la vision
-
-### Une solution évolutive
-
-**Vision :**
-
-> Une plateforme scalable capable d'évoluer avec les besoins du projet.
-
-* Architecture évolutive
-* Fonctionnalités modulaires
-* Expérience utilisateur adaptée
-* Possibilité d'intégrer de nouveaux services
-
-![bg right:45%](figures/empathy-map.png)
+## — Profil : le client
 
 ---
 
-# Définition du problème
-
-### Problème identifié
-
-**Les utilisateurs ont besoin d'une solution centralisée, simple et rapide pour gérer leurs opérations.**
-
-### Enjeu
-
-Transformer les besoins identifiés en fonctionnalités concrètes.
+## — Profil : le personnel (staff)
 
 ---
 
-# Idéation
+## — Synthèse de la vision (scalabilité)
 
-### De l'idée à la solution
-
-**Structure technique**
-
-* Application web
-* API
-* Base de données
-* Architecture modulaire
-
-**Bénéfices business**
-
-* Gain de temps
-* Réduction des erreurs
-* Meilleure expérience
-* Scalabilité
+**Figure 5 — Carte d’empathie**
 
 ---
 
-# Les acteurs du système
+# 5. Définition du problème
+---
 
-### Acteurs principaux
-
-* **Client**
-* **Personnel / Staff**
-* **Administrateur**
-* **Système de paiement**
-* **Assistant IA**
+## — Définition du problème
 
 ---
 
-# Détail des cas d'utilisation
+##  — Idéation
 
-### Fonctionnalités principales
-
-* Authentification
-* Gestion des ressources
-* Gestion des clients
-* Gestion des commandes
-* Paiement
-* Assistance IA
-* Administration
+- Structure technique
+- Bénéfices business
 
 ---
 
-# Cas d'utilisation global
+# 6. Architecture des cas d’utilisation (UML)
+---
 
-### Vue globale du système
-
-![bg contain](figures/use-case-global.png)
+## — Les acteurs du système
 
 ---
 
-# Stratégie de développement
-
-### Développement par sprints
-
-**Sprint 1**
-Fondations + ressources
-
-**Sprint 2**
-Clients + commandes
-
-**Sprint 3**
-IA + paiements
+##  — Détail des cas d’utilisation
 
 ---
 
-# Sprint 1
+##  — Cas d’utilisation global
 
-### Fondations et gestion des ressources
-
-* Authentification
-* Gestion des utilisateurs
-* Gestion des ressources
-* Administration de base
-
-![bg right:45%](figures/sprint1.png)
+**Figure 6 — Cas d’utilisation global**
 
 ---
 
-# Sprint 2
+# 7. Planification agile : sprints et cas d’utilisation
+---
 
-### Système client et commandes en temps réel
-
-* Gestion du profil client
-* Création des commandes
-* Suivi en temps réel
-* Notifications
-* Gestion du statut
-
-![bg right:45%](figures/sprint2.png)
+## — Stratégie de développement
 
 ---
 
-# Sprint 3
+## — Sprint 1 : fondations et gestion des ressources
 
-### Assistant IA et paiements
-
-* Assistant IA
-* Assistance utilisateur
-* Gestion des paiements
-* Confirmation des transactions
-* Sécurisation
-
-![bg right:45%](figures/sprint3.png)
+**Figure 7 — Cas d’utilisation du Sprint 1**
 
 ---
 
-# Besoins techniques
+## Sprint 2 : système client et commandes en temps réel
 
-### Contraintes principales
-
-* Performance
-* Sécurité
-* Disponibilité
-* Scalabilité
-* Maintenabilité
+**Figure 8 — Cas d’utilisation du Sprint 2**
 
 ---
 
-# Analyse technique
+## Sprint 3 : assistant IA et opérations de paiement
 
-### Choix techniques
-
-* Architecture modulaire
-* API REST
-* Base de données
-* Authentification sécurisée
-* Communication client / serveur
+**Figure 9 — Cas d’utilisation du Sprint 3**
 
 ---
 
-# Conception générale
+# 8. Branche technique et diagramme de classe
+---
 
-### Organisation du système
-
-**Frontend**
-
-Interface utilisateur
-
-↓
-
-**Backend**
-
-Logique métier + API
-
-↓
-
-**Base de données**
-
-Stockage des informations
+##  Besoins techniques
 
 ---
 
-# Architecture logicielle
-
-### Architectures utilisées
-
-* **MVC**
-* **Architecture N-tiers**
-* **Architecture globale**
-
-![bg right:30%](figures/mvc.png)
-
-![bg right:30%](figures/n-tiers.png)
-
-![bg right:30%](figures/architecture-globale.png)
+##  Analyse technique
 
 ---
 
-# Diagramme de classe
-
-### Modélisation du système
-
-* Entités principales
-* Attributs
-* Méthodes
-* Relations
-* Cardinalités
-
-![bg contain](figures/class-diagram.png)
+##  Conception générale
 
 ---
 
-# Maquettes UI/UX
+##  — Architecture logicielle
 
-### Conception de l'interface
-
-* Parcours utilisateur
-* Hiérarchie visuelle
-* Navigation
-* Responsive design
-* Expérience utilisateur
-
-![bg contain](figures/mockups.png)
+- Figure 10 — MVC
+- Figure 11 — Architecture N-tiers
+- Figure 12 — Architecture globale
 
 ---
 
-# Outils de développement
+# 9. Conception
+---
 
-### Environnement de travail
+## — Diagramme de classe
 
-* VS Code
-* Git
-* GitHub
-* Figma
-* Postman
-* Outils de gestion de projet
+**Figure 13 — Diagramme de classe**
 
 ---
 
-# Technologies utilisées
+# 10. Maquettes (UI/UX)
+---
 
-### Stack technique
+##  — Maquettes (UI/UX)
 
-**Frontend**
-
-HTML • CSS • JavaScript • React
-
-**Backend**
-
-PHP / Laravel • API REST
-
-**Base de données**
-
-MySQL
-
-**Autres**
-
-Git • GitHub • Figma
+**Figure 14 — Maquettes (UI/UX)**
 
 ---
 
-# Bilan d'implémentation des sprints
+# 11. Réalisation et développement
+---
 
-### Avancement
-
-| Sprint   | Fonctionnalités         | État |
-| -------- | ----------------------- | ---- |
-| Sprint 1 | Fondations + ressources | ✓    |
-| Sprint 2 | Clients + commandes     | ✓    |
-| Sprint 3 | IA + paiements          | ✓    |
+##  — Outils de développement
 
 ---
 
-# Conclusion
-
-### Résultats
-
-* Besoin analysé
-* Solution conçue
-* Architecture définie
-* Sprints réalisés
-* Fonctionnalités implémentées
-
-### Perspective
-
-**Une solution évolutive et prête à accueillir de nouvelles fonctionnalités.**
+##  — Technologies utilisées
 
 ---
 
-# Merci pour votre attention
+##  — Bilan d’implémentation des sprints
 
-## Questions ?
+---
+
+##  — Conclusion
+
+---
+
+#   Merci pour votre attention
