@@ -1,0 +1,106 @@
+name: Deploy Marp Presentations
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Install Marp
+        run: npm install -g @marp-team/marp-cli
+
+      # Convert every Markdown presentation to HTML
+      - name: Build all presentations
+        run: |
+          find presentation -type f -name "*.md" | while read file; do
+            folder=$(dirname "$file")
+            marp "$file" --html --output "$folder/index.html"
+          done
+
+      # Automatically generate presentation links
+      - name: Generate presentation hub
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+
+          index = Path("index.html")
+          html = index.read_text()
+
+          cards = []
+
+          for folder in sorted(Path("presentation").iterdir()):
+              if not folder.is_dir():
+                  continue
+
+              md_files = list(folder.glob("*.md"))
+
+              if not md_files:
+                  continue
+
+              name = folder.name.replace("-", " ").replace("_", " ").title()
+              link = f"presentation/{folder.name}/"
+
+              cards.append(f"""
+              <div class="card">
+                  <h2>{name}</h2>
+                  <a href="{link}">View Presentation →</a>
+              </div>
+              """)
+
+          generated = "\n".join(cards)
+
+          start = "<!-- PRESENTATIONS -->"
+          end = "<!-- END PRESENTATIONS -->"
+
+          if start not in html or end not in html:
+              raise Exception(
+                  "Missing presentation markers in index.html"
+              )
+
+          before = html.split(start)[0]
+          after = html.split(end)[1]
+
+          new_html = (
+              before
+              + start
+              + generated
+              + after
+          )
+
+          index.write_text(new_html)
+
+          print(f"Generated {len(cards)} presentation cards.")
+          PY
+
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
