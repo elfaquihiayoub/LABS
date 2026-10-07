@@ -27,11 +27,14 @@ jobs:
       # Convert every Markdown presentation to HTML
       - name: Build all presentations
         run: |
-          find Presentation -type f -name "*.md" | while read file; do
+          while IFS= read -r file; do
             folder=$(dirname "$file")
-            marp "$file" --html --output "$folder/index.html"
-          done
+            output="$folder/index.html"
 
+            echo "Building $file -> $output"
+
+            marp "$file" --html --output "$output"
+          done < <(find Presentation -type f -name "*.md")
       # Automatically generate presentation links
       - name: Generate presentation hub
         run: |
