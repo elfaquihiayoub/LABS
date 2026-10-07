@@ -24,74 +24,87 @@ jobs:
       - name: Install Marp
         run: npm install -g @marp-team/marp-cli
 
-      # Convert every Markdown presentation to HTML
-      - name: Build all presentations
-        run: |
-          find "Presentation" -mindepth 2 -maxdepth 2 -type f -name "*.md" | while IFS= read -r file; do
-            folder=$(dirname "$file")
-
-            echo "Building: $file"
-            (
-              cd "$folder"
-              temp_md=$(mktemp "marp-input-XXXXXX.md")
-              temp_html="${temp_md%.md}.html"
-              trap 'rm -f "$temp_md" "$temp_html"' EXIT
-
-              cp "$(basename "$file")" "$temp_md"
-              marp --html "$temp_md"
-              mv "$temp_html" index.html
-            )
-          done
-      - name: Generate presentation hub
+      - name: Build presentations and generate hub
         run: |
           python3 <<'PY'
+          import html
+          import re
+          import shutil
+          import subprocess
+          import unicodedata
           from pathlib import Path
 
-          index = Path("index.html")
-          html = index.read_text()
+          def slugify(value):
+              ascii_value = (
+                  unicodedata.normalize("NFKD", value)
+                  .encode("ascii", "ignore")
+                  .decode("ascii")
+                  .lower()
+              )
+              slug = re.sub(r"[^a-z0-9]+", "-", ascii_value).strip("-")
+              if not slug:
+                  raise ValueError(f"Cannot create URL slug from {value!r}")
+              return slug
 
+          markdown_files = sorted(Path("Presentation").glob("*/*.md"))
+          if not markdown_files:
+              raise RuntimeError("No presentation Markdown files found.")
+
+          output_root = Path("presentations")
           cards = []
+          used_slugs = set()
 
-          for folder in sorted(Path("Presentation").iterdir()):
-              if not folder.is_dir():
-                  continue
+          for markdown_file in markdown_files:
+              slug = slugify(markdown_file.stem)
+              if slug in used_slugs:
+                  raise ValueError(f"Duplicate presentation URL slug: {slug}")
+              used_slugs.add(slug)
 
-              md_files = list(folder.glob("*.md"))
+              output_dir = output_root / slug
+              output_dir.mkdir(parents=True, exist_ok=True)
 
-              if not md_files:
-                  continue
+              temporary_markdown = output_dir / "marp-input.md"
+              temporary_html = output_dir / "marp-input.html"
+              try:
+                  shutil.copyfile(markdown_file, temporary_markdown)
+                  subprocess.run(
+                      ["marp", "--html", temporary_markdown.name],
+                      cwd=output_dir,
+                      check=True,
+                  )
+                  if not temporary_html.is_file():
+                      raise FileNotFoundError(
+                          f"Marp did not create {temporary_html}"
+                      )
+                  temporary_html.replace(output_dir / "index.html")
+              finally:
+                  temporary_markdown.unlink(missing_ok=True)
+                  temporary_html.unlink(missing_ok=True)
 
-              name = folder.name.replace("-", " ").replace("_", " ").title()
-              link = f"Presentation/{folder.name}/"
-
+              name = re.sub(r"[-_]+", " ", markdown_file.stem).strip().title()
+              safe_name = html.escape(name)
+              link = f"{output_root.as_posix()}/{slug}/"
               cards.append(f"""
               <div class="card">
-                  <h2>{name}</h2>
+                  <h2>{safe_name}</h2>
                   <a href="{link}">View Presentation →</a>
               </div>
               """)
 
-          generated = "\n".join(cards)
-
+          index = Path("index.html")
+          document = index.read_text(encoding="utf-8")
           start = "<!-- PRESENTATIONS -->"
           end = "<!-- END PRESENTATIONS -->"
+          if start not in document or end not in document:
+              raise ValueError("Missing presentation markers in index.html")
 
-          if start not in html or end not in html:
-              raise Exception(
-                  "Missing presentation markers in index.html"
-              )
-
-          before = html.split(start)[0]
-          after = html.split(end)[1]
-
-          new_html = (
-              before
-              + start
-              + generated
-              + after
+          before, remainder = document.split(start, 1)
+          _, after = remainder.split(end, 1)
+          generated = "\n".join(cards)
+          index.write_text(
+              before + start + generated + end + after,
+              encoding="utf-8",
           )
-
-          index.write_text(new_html)
 
           print(f"Generated {len(cards)} presentation cards.")
           PY
