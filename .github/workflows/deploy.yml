@@ -27,15 +27,17 @@ jobs:
       # Convert every Markdown presentation to HTML
       - name: Build all presentations
         run: |
-          while IFS= read -r file; do
+          find "Presentation" -mindepth 2 -maxdepth 2 -type f -name "*.md" | while IFS= read -r file; do
             folder=$(dirname "$file")
-            output="$folder/index.html"
+            filename=$(basename "$file" .md)
 
-            echo "Building $file -> $output"
+            echo "Building: $file"
 
-            marp "$file" --html --output "$output"
-          done < <(find Presentation -type f -name "*.md")
-      # Automatically generate presentation links
+            (
+              cd "$folder"
+              marp "$filename.md" --html --output index.html
+            )
+          done
       - name: Generate presentation hub
         run: |
           python3 <<'PY'
