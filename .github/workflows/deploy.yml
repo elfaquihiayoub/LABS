@@ -31,7 +31,16 @@ jobs:
             folder=$(dirname "$file")
 
             echo "Building: $file"
-            marp "$file" --html --output "$folder/index.html"
+            (
+              cd "$folder"
+              temp_md=$(mktemp "marp-input-XXXXXX.md")
+              temp_html="${temp_md%.md}.html"
+              trap 'rm -f "$temp_md" "$temp_html"' EXIT
+
+              cp "$(basename "$file")" "$temp_md"
+              marp --html "$temp_md"
+              mv "$temp_html" index.html
+            )
           done
       - name: Generate presentation hub
         run: |
