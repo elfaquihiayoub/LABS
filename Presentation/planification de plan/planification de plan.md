@@ -1,458 +1,126 @@
 ---
-
 marp: true
-theme: gaia
+theme: default
 paginate: true
---------------
+size: 16:9
+title: Plan de présentation
+style: |
+  section {
+    background: #f8fafc;
+    color: #172554;
+    font-family: "Aptos", "Segoe UI", sans-serif;
+    padding: 68px 86px;
+  }
+  section.lead {
+    background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 58%, #38bdf8 100%);
+    color: white;
+    text-align: left;
+  }
+  h1 {
+    color: #0f3b8f;
+    font-size: 54px;
+    border-bottom: 6px solid #38bdf8;
+    padding-bottom: 14px;
+  }
+  .lead h1, .lead h2 { color: white; border: 0; }
+  .lead h1 { font-size: 76px; padding: 0; }
+  h2 { color: #1d4ed8; font-size: 34px; }
+  h3 { color: #0f3b8f; font-size: 26px; margin-bottom: 10px; }
+  ul { font-size: 23px; line-height: 1.45; }
+  li::marker { color: #0284c7; }
+  strong { color: #1d4ed8; }
+  footer { color: #64748b; }
+---
 
-# Projet de fin d'études
+<!-- _class: lead -->
 
-### Présentation du projet
+# Plan de présentation
 
-**Équipe :** …
-**Encadrant :** …
-**Année :** 2026–2027
+## Projet fil rouge
+
+Une feuille de route de la problématique à la réalisation.
 
 ---
 
-# Introduction générale
+# 01 · Cadrage du projet
 
-### Le projet en quelques mots
+## Introduction générale
 
-* Contexte
-* Problématique
-* Solution proposée
-* Méthodologie
-* Architecture
-* Réalisation
+- **Slide 3** — Contexte du projet
+- **Slide 4** — Défis opérationnels
+- **Slide 5** — Objectifs de la solution
+- **Slide 6** — Définition du problème
 
----
+## Méthode de travail
 
-# Contexte du projet
-
-### Environnement
-
-* Besoin d'une solution numérique
-* Processus actuellement complexes
-* Gestion de plusieurs acteurs
-* Nécessité d'une plateforme centralisée
+- **Slide 7** — Scrum · *Figure 1 : méthodologie Scrum*
+- **Slide 8** — Design Thinking · *Figure 2 : Design Thinking*
+- **Slide 9** — 2TUP · *Figure 3 : processus 2TUP*
 
 ---
 
-# Défis opérationnels
+# 02 · Besoin et vision produit
 
-### Principales difficultés
+## Gestion et compréhension du besoin
 
-* Gestion des ressources
-* Gestion des clients
-* Suivi des commandes
-* Communication en temps réel
-* Gestion des paiements
+- **Slide 10** — Gestion des tâches · *Figure 4 : diagramme de Gantt*
+- **Slide 11** — Empathie
+- **Slide 12** — Profil : le client
+- **Slide 13** — Profil : le personnel (*staff*)
+- **Slide 14** — Synthèse de la vision et scalabilité · *Figure 5 : carte d’empathie*
 
----
+## Définition de la solution
 
-# Objectifs de la solution
-
-### Objectifs principaux
-
-* Centraliser les opérations
-* Automatiser les tâches
-* Améliorer l'expérience client
-* Faciliter le travail du personnel
-* Préparer une solution évolutive
+- **Slide 15** — Définition du problème
+- **Slide 16** — Idéation : structure technique et bénéfices business
 
 ---
 
-# Définition du problème
+# 03 · Analyse fonctionnelle
 
-### Problématique
+## Architecture des cas d’utilisation (UML)
 
-**Comment concevoir une plateforme capable de centraliser les opérations, simplifier la gestion et améliorer l'expérience des différents acteurs ?**
+- **Slide 17** — Les acteurs du système
+- **Slide 18** — Détail des cas d’utilisation
+- **Slide 19** — Cas d’utilisation global · *Figure 6*
 
----
+## Planification agile
 
-# Scrum
-
-### Méthodologie agile
-
-* Travail en sprints
-* Priorisation des fonctionnalités
-* Livraisons progressives
-* Feedback continu
-* Adaptation aux besoins
-
-![bg right:45%](figures/scrum.png)
+- **Slide 20** — Stratégie de développement
+- **Slide 21** — Sprint 1 : fondations et gestion des ressources · *Figure 7*
+- **Slide 22** — Sprint 2 : client et commandes en temps réel · *Figure 8*
+- **Slide 23** — Sprint 3 : assistant IA et opérations de paiement · *Figure 9*
 
 ---
 
-# Design Thinking
+# 04 · Conception technique
 
-### Approche centrée utilisateur
+## Branche technique et diagramme de classe
 
-**Empathie → Définition → Idéation → Prototype → Test**
-
-* Comprendre les utilisateurs
-* Identifier leurs besoins
-* Concevoir une solution adaptée
-
-![bg right:45%](figures/design-thinking.png)
-
----
-
-# 2TUP
-
-### Processus de développement
-
-* Branche fonctionnelle
-* Branche technique
-* Conception progressive
-* Intégration des deux branches
-
-![bg right:45%](figures/2tup.png)
+- **Slide 24** — Besoins techniques
+- **Slide 25** — Analyse technique
+- **Slide 26** — Conception générale
+- **Slide 27** — Architecture logicielle
+  - *Figure 10 : MVC*
+  - *Figure 11 : architecture N-tiers*
+  - *Figure 12 : architecture globale*
+- **Slide 28** — Diagramme de classe · *Figure 13*
 
 ---
 
-# Gestion des tâches
+# 05 · Réalisation et conclusion
 
-### Organisation du projet
+## Maquettes (UI/UX)
 
-* Découpage des fonctionnalités
-* Priorisation
-* Attribution des tâches
-* Suivi de l'avancement
-* Respect des délais
+- **Slide 29** — Maquettes (UI/UX) · *Figure 14*
 
-![bg right:50%](figures/gantt.png)
+## Développement
 
----
+- **Slide 30** — Outils de développement
+- **Slide 31** — Technologies utilisées
+- **Slide 32** — Bilan d’implémentation des sprints
 
-# Empathie
+## Clôture
 
-### Comprendre les utilisateurs
-
-* Identifier les besoins
-* Comprendre les difficultés
-* Observer les comportements
-* Recueillir les attentes
-
----
-
-# Profil : le client
-
-### Besoins principaux
-
-* Simplicité
-* Rapidité
-* Disponibilité
-* Transparence
-* Expérience fluide
-
----
-
-# Profil : le personnel
-
-### Besoins principaux
-
-* Organisation
-* Gestion efficace
-* Informations en temps réel
-* Réduction des tâches répétitives
-* Outils centralisés
-
----
-
-# Synthèse de la vision
-
-### Une solution évolutive
-
-**Vision :**
-
-> Une plateforme scalable capable d'évoluer avec les besoins du projet.
-
-* Architecture évolutive
-* Fonctionnalités modulaires
-* Expérience utilisateur adaptée
-* Possibilité d'intégrer de nouveaux services
-
-![bg right:45%](figures/empathy-map.png)
-
----
-
-# Définition du problème
-
-### Problème identifié
-
-**Les utilisateurs ont besoin d'une solution centralisée, simple et rapide pour gérer leurs opérations.**
-
-### Enjeu
-
-Transformer les besoins identifiés en fonctionnalités concrètes.
-
----
-
-# Idéation
-
-### De l'idée à la solution
-
-**Structure technique**
-
-* Application web
-* API
-* Base de données
-* Architecture modulaire
-
-**Bénéfices business**
-
-* Gain de temps
-* Réduction des erreurs
-* Meilleure expérience
-* Scalabilité
-
----
-
-# Les acteurs du système
-
-### Acteurs principaux
-
-* **Client**
-* **Personnel / Staff**
-* **Administrateur**
-* **Système de paiement**
-* **Assistant IA**
-
----
-
-# Détail des cas d'utilisation
-
-### Fonctionnalités principales
-
-* Authentification
-* Gestion des ressources
-* Gestion des clients
-* Gestion des commandes
-* Paiement
-* Assistance IA
-* Administration
-
----
-
-# Cas d'utilisation global
-
-### Vue globale du système
-
-![bg contain](figures/use-case-global.png)
-
----
-
-# Stratégie de développement
-
-### Développement par sprints
-
-**Sprint 1**
-Fondations + ressources
-
-**Sprint 2**
-Clients + commandes
-
-**Sprint 3**
-IA + paiements
-
----
-
-# Sprint 1
-
-### Fondations et gestion des ressources
-
-* Authentification
-* Gestion des utilisateurs
-* Gestion des ressources
-* Administration de base
-
-![bg right:45%](figures/sprint1.png)
-
----
-
-# Sprint 2
-
-### Système client et commandes en temps réel
-
-* Gestion du profil client
-* Création des commandes
-* Suivi en temps réel
-* Notifications
-* Gestion du statut
-
-![bg right:45%](figures/sprint2.png)
-
----
-
-# Sprint 3
-
-### Assistant IA et paiements
-
-* Assistant IA
-* Assistance utilisateur
-* Gestion des paiements
-* Confirmation des transactions
-* Sécurisation
-
-![bg right:45%](figures/sprint3.png)
-
----
-
-# Besoins techniques
-
-### Contraintes principales
-
-* Performance
-* Sécurité
-* Disponibilité
-* Scalabilité
-* Maintenabilité
-
----
-
-# Analyse technique
-
-### Choix techniques
-
-* Architecture modulaire
-* API REST
-* Base de données
-* Authentification sécurisée
-* Communication client / serveur
-
----
-
-# Conception générale
-
-### Organisation du système
-
-**Frontend**
-
-Interface utilisateur
-
-↓
-
-**Backend**
-
-Logique métier + API
-
-↓
-
-**Base de données**
-
-Stockage des informations
-
----
-
-# Architecture logicielle
-
-### Architectures utilisées
-
-* **MVC**
-* **Architecture N-tiers**
-* **Architecture globale**
-
-![bg right:30%](figures/mvc.png)
-
-![bg right:30%](figures/n-tiers.png)
-
-![bg right:30%](figures/architecture-globale.png)
-
----
-
-# Diagramme de classe
-
-### Modélisation du système
-
-* Entités principales
-* Attributs
-* Méthodes
-* Relations
-* Cardinalités
-
-![bg contain](figures/class-diagram.png)
-
----
-
-# Maquettes UI/UX
-
-### Conception de l'interface
-
-* Parcours utilisateur
-* Hiérarchie visuelle
-* Navigation
-* Responsive design
-* Expérience utilisateur
-
-![bg contain](figures/mockups.png)
-
----
-
-# Outils de développement
-
-### Environnement de travail
-
-* VS Code
-* Git
-* GitHub
-* Figma
-* Postman
-* Outils de gestion de projet
-
----
-
-# Technologies utilisées
-
-### Stack technique
-
-**Frontend**
-
-HTML • CSS • JavaScript • React
-
-**Backend**
-
-PHP / Laravel • API REST
-
-**Base de données**
-
-MySQL
-
-**Autres**
-
-Git • GitHub • Figma
-
----
-
-# Bilan d'implémentation des sprints
-
-### Avancement
-
-| Sprint   | Fonctionnalités         | État |
-| -------- | ----------------------- | ---- |
-| Sprint 1 | Fondations + ressources | ✓    |
-| Sprint 2 | Clients + commandes     | ✓    |
-| Sprint 3 | IA + paiements          | ✓    |
-
----
-
-# Conclusion
-
-### Résultats
-
-* Besoin analysé
-* Solution conçue
-* Architecture définie
-* Sprints réalisés
-* Fonctionnalités implémentées
-
-### Perspective
-
-**Une solution évolutive et prête à accueillir de nouvelles fonctionnalités.**
-
----
-
-# Merci pour votre attention
-
-## Questions ?
+- **Slide 33** — Conclusion
+- **Slide 34** — Merci pour votre attention
