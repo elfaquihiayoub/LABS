@@ -53,6 +53,7 @@ jobs:
           output_root = Path("presentations")
           cards = []
           used_slugs = set()
+          image_extensions = {".avif", ".bmp", ".gif", ".jpeg", ".jpg", ".png", ".svg", ".webp"}
 
           for markdown_file in markdown_files:
               slug = slugify(markdown_file.stem)
@@ -63,12 +64,16 @@ jobs:
               output_dir = output_root / slug
               output_dir.mkdir(parents=True, exist_ok=True)
 
+              for asset in markdown_file.parent.iterdir():
+                  if asset.is_file() and asset.suffix.lower() in image_extensions:
+                      shutil.copyfile(asset, output_dir / asset.name)
+
               temporary_markdown = output_dir / "marp-input.md"
               temporary_html = output_dir / "marp-input.html"
               try:
                   shutil.copyfile(markdown_file, temporary_markdown)
                   subprocess.run(
-                      ["marp", "--html", temporary_markdown.name],
+                      ["marp", "--html", "--allow-local-files", temporary_markdown.name],
                       cwd=output_dir,
                       check=True,
                   )
