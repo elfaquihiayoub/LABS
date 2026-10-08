@@ -169,14 +169,16 @@ style: |
 
 ## — Synthèse de la vision (scalabilité)
 
-**Figure 5 — Carte d’empathie**
+![](Carte%20d’empathie%20du%20bibliothécaire.png)
 
 ---
 
 # 5. Définition du problème
 ---
 
-## — Définition du problème
+  The bibliothécaire has difficulty managing and accessing library information quickly and reliably, which causes time loss and increases the risk of errors in daily operations.
+  
+![alt text](content.png)
 
 ---
 
