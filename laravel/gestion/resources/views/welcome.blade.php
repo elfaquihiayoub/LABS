@@ -7,14 +7,14 @@
 </head>
 <body>
     <h1> hello world</h1>
-    @php
+    {{-- @php
         $x=10;
         $y=20;
         $z=$x + $y;
     @endphp
 
-    <p>{{ $x}} + {{$y}} = {{$z}}</p>
-    
+    <p>{{ $x}} + {{$y}} = {{$z}}</p> --}}
+
 
 </body>
 </html>
