@@ -4,3 +4,4 @@
 | --- | --- | --- | --- |
 | 01 | Marp | Learn how to create presentations using Markdown with Marp. | [Lab 01: Marp](./lab-01-marp/README.md) |
 | 02 | Plan d'autoformation | Définir un objectif d'apprentissage et construire un plan d'autoformation réaliste. | [Lab 02: Plan d'autoformation](./lab-02-plan-autoformation/README.md) |
+| 03 | Alpine.js | Découvrir les directives Alpine.js et créer une première interaction dans une page HTML. | [Lab 03: Alpine.js](./lab-03-alpinejs/README.md) |
