@@ -140,7 +140,6 @@ JetBrains IDEs<br>
 <li><strong>Live Server</strong>Launches a local development server with a live reload feature</li>
 <li><strong>Prettier</strong>A code formatter. It automatically cleans up, indents, and structures your code</li>
 <li><strong>GitLens</strong>Visualizes code authorship directly inside your files</li>
-<li><strong>Todo Tree</strong>Scans your workspace for comment tags like <b>TODO</b> or <b>FIXME</b> and organizes them into a clear tree view so you never forget unfinished tasks</li>
 <li><strong>Error Lens</strong>Radically changes how you see mistakes in your code by bringing errors directly to your line of sight rather than hiding them at the bottom of the screen</li>
 </ul>
 
