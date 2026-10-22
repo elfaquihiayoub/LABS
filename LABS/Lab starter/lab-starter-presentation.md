@@ -63,6 +63,7 @@ style: |
 - Pourquoi utiliser un IDE ?
 - Problems encountered during the lab
 - Solutions to solve these problems 
+- ENVIRONNEMENT PRÊT
 
 ---
 
