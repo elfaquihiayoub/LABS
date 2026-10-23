@@ -1,68 +1,91 @@
 ---
 name: lab-technique-creator
-description: Creates a structured, beginner-friendly technical lab plan from a topic, with the real problem confirmed by the user before drafting.
-argument-hint: <topic> [optional context or task description]
+description: Creates beginner-friendly Marp technical lab presentations, confirming the real problem before drafting and adapting practical content to the context.
+argument-hint: \<topic> [optional context or task description]
 ---
 
 # Lab Technique Creator
 
-Create one clear technical lab plan in Markdown (`.md`) for beginner web-development learners. Default language: French, unless the user asks for another language.
+Create one beginner-friendly **Marp presentation** in Markdown (`.md`) for web-development learners. Default language: French.
 
-## Mandatory workflow: confirm the problem first
+## Mandatory workflow
 
-1. Identify the lab topic/title and read any context or task description provided.
-2. **Before drafting, confirm the problem that motivated the lab.** If the user has not already explained it, ask one concise question such as:  
-   **« Quel problème ou besoin le formateur vous a-t-il demandé de résoudre avec ce lab ? »**
-3. Stop and wait for the user's answer before producing the lab plan. Do not guess the teacher's intention or replace the real problem with generic disadvantages of the technology.
-4. If the user already gave the problem clearly, do not ask again. If the wording is rough, preserve its meaning and clarify it in the final plan without changing its intent.
+1. **Identify the topic:** Read the title and supplied context, description, or assignment.
+2. **Confirm the problem:** If the real problem is missing, ask:  
+   « Quel problème ou besoin le formateur vous a-t-il demandé de résoudre avec ce lab ? »
+3. **Wait for the answer:** Do not invent the teacher's intention. Do not ask again if the problem is already clear.
+4. **Classify the context:** Determine whether the assignment requires a technical implementation, setup, or hands-on demonstration, or is purely conceptual.
+5. **Plan the presentation:** Create the slide outline immediately after the Introduction.
+6. **Research if necessary:** Prioritize the user's description and reliable, preferably official documentation.
+7. **Create and validate:** Generate one Marp-compatible `.md` presentation and check its structure and accuracy.
 
-## Scope and research
+## Required presentation structure
 
-- The topic/title is required. Use any description, assignment text, or context supplied by the user as the primary source of scope.
-- If a description is provided, follow it closely and avoid broad, unnecessary research.
-- If no description is provided, use the topic/title directly to determine the scope. Check reliable, preferably official documentation when technical accuracy or current details matter.
-- Do not invent project requirements, technologies, teacher expectations, commands, or features. State an assumption briefly only when unavoidable.
-- Audience: beginner web developers doing practical labs. Explain unfamiliar terms simply and only to the depth needed for the lab.
+Follow this order:
 
-## Required lab structure
+1. **Titre**
+2. **Introduction / Mise en situation**
+3. **Plan de la présentation**
+4. **Stack technique**
+5. **Problématique**
+6. **Définitions**
+7. **Solutions**
 
-Generate the sections below **in this exact order**:
+**Then adapt the ending to the context:**
 
-1. **Titre** — A short, specific title naming the technique, tool, or concept being studied.
-2. **Introduction / Mise en situation** — Explain the context, the goal, and where the technique is useful. Use the given project or scenario (for example, a blog) here, not as an item in the stack.
-3. **Stack technique** — List only technologies and tools genuinely needed for this lab, grouped where useful (language, framework/library, database, tools). Add a short role for each item. Do not list the management project itself as part of the stack, and do not add technologies just because they are commonly used alongside the topic.
-4. **Définitions** — Define the important unfamiliar terms needed to understand the lab. Use the format `Terme : simple definition + its role in this lab`. Explain prerequisite terms too when understanding them is necessary (e.g. explain “framework” before or alongside “Laravel”). Avoid a glossary of irrelevant terms.
-5. **Problème(s)** — State the specific problem or need supplied by the user/formateur. Keep the focus on why this lab was assigned and what must be improved, solved, or tested. Do not turn this section into a generic list of technology limitations.
-6. **Solution(s)** — Explain how the chosen technique addresses the stated problem. Map each solution clearly to the problem it solves. Keep claims accurate and practical.
-7. **Séquence pratique** — Include this section only when hands-on practice is useful or required. Provide ordered, actionable steps from setup to completion. For each substantial step, state what to do and the expected intermediate result. Include concise code or commands only when useful; never invent commands. If the topic is purely conceptual and no meaningful exercise is required, omit this section rather than forcing a practice sequence.
-8. **Validation** — Provide observable acceptance criteria or a checklist to confirm that the lab succeeded. Each criterion must be testable and related to the original problem or lab objective. Mention the expected final result.
+### A. Technical context requiring practical implementation
+
+Add:
+
+8. **Séquence pratique**
+   - **Quick Start:** Show the minimum steps needed to start using the technology, including prerequisites and setup when necessary.
+   - **Hello World:** Build the smallest meaningful example with the chosen technology to demonstrate that it works.
+   - Explain the steps simply and show the expected result.
+   - Use accurate commands and code from reliable documentation when needed; never invent them.
+
+9. **Validation**
+   - Provide observable criteria confirming that the setup and Hello World example work correctly.
+
+### B. Conceptual context or context without a practical technical task
+
+**End the presentation with Solutions.** Do not add Quick Start, Hello World, a forced practical sequence, or a Validation section.
+
+Only choose the technical path when the supplied context genuinely calls for technical implementation, setup, or demonstration. Do not add practical steps merely because the topic is a technology.
+
+## Marp and slide design
+
+- Include valid Marp front matter with `marp: true`.
+- Separate slides using `---`.
+- Use a modern, professional, consistent design.
+- Keep slides concise, readable, and focused on one main idea.
+- Prefer short bullets, diagrams, and relevant code examples over long paragraphs.
+- Ensure the presentation plan matches the actual slide order.
 
 ## Content rules
 
-- Keep the lab concise, structured, and easy to scan. Prefer headings, bullets, short definitions, numbered steps, and small code examples over long paragraphs.
-- Use precise beginner-friendly French by default; keep technical terms in their usual form and explain them on first use.
-- Keep the problem, solution, practical steps, and validation aligned: every solution must address a stated problem, practical work must implement or test the solution, and validation must verify the result.
-- Distinguish the **project/scenario** from the **stack**: the project belongs in the introduction; the stack contains technologies and tools.
-- Do not include optional sections such as a long conclusion, quiz, installation guide, or bibliography unless they are needed for the requested lab.
-- Do not pad the plan with generic content. If a required section has no relevant content yet, say what information is missing rather than fabricate it.
+- Use clear, beginner-friendly French by default.
+- Define unfamiliar terms and explain their relevance to the lab.
+- Keep the problem and solutions aligned; do not replace the user's real problem with generic technology disadvantages.
+- Include only relevant tools, technologies, definitions, and practical steps.
+- Do not fabricate requirements, teacher expectations, commands, or results.
+- If essential information is missing, ask instead of guessing.
 
 ## Output and workspace rules
 
-- Produce one Markdown (`.md`) lab-plan file only, unless the user explicitly asks for another format.
-- Use a clear filename such as `<topic-slug>-lab.md`.
-- Work only in the currently opened workspace/folder when workspace tools are available. Do not inspect, scan, or navigate into unopened folders, sibling folders, parent directories, or unrelated project areas.
-- If the same lab file already exists, modify it only when the user clearly requests an update; otherwise choose a non-destructive filename.
-- Do not export PDF, PPTX, HTML, or other formats by default.
+- Produce one Marp-compatible `.md` presentation only.
+- Do not export PDF, PPTX, HTML, or other formats unless explicitly requested.
+- Use a clear filename, such as `topic-slug-lab.md`.
+- Work only in the currently opened workspace. Do not scan unopened folders, parent folders, sibling folders, or unrelated project areas.
+- Do not overwrite an existing presentation unless the user clearly requests an update.
 
 ## Final check
 
-Before returning the file, verify:
+- Confirm the real problem is represented faithfully.
+- Verify Marp front matter, slide separators, and slide order.
+- Ensure the presentation plan matches the slides.
+- **Technical context:** Confirm Quick Start, Hello World, and testable validation are included when genuinely needed.
+- **Non-practical context:** Confirm the presentation ends with Solutions.
+- Check technical accuracy, readability, and consistency.
+- Produce only the `.md` file.
 
-- The user-provided problem is represented faithfully; no invented motivation is presented as fact.
-- All eight structural rules above were followed, with the practical sequence included only when appropriate.
-- The stack contains only relevant technologies/tools and excludes the project name itself.
-- Definitions are accurate and understandable for beginners.
-- Every solution maps to a problem; validation criteria are observable.
-- The output is concise, well-formatted Markdown and the file exists.
-
-Reply briefly with a link to the `.md` file and mention only important assumptions or missing information.
+Reply briefly with a link to the `.md` file and mention important assumptions or missing information only.
