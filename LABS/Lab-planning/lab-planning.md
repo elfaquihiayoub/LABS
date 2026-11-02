@@ -193,7 +193,7 @@ style: |
 <div class="meta-box">
   <div class="meta-item">
     <span class="meta-label">👨‍💻 Réalisé par</span>
-    <span class="meta-value">Mohammed Yassir Mesbahi</span>
+    <span class="meta-value">Ayoub el faquihi</span>
   </div>
   <div class="meta-item">
     <span class="meta-label">👨‍🏫 Encadré par</span>
