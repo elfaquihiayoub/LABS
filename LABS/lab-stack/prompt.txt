@@ -1,0 +1,35 @@
+Create a Marp presentation in a single Markdown file called "Lab-stack.md" for a technical project titled "Labs & Stack Technique" and "Podcast Directory Management".
+
+Requirements:
+- Use Marp with a 16:9 layout and modern clean styling.
+- Include a title slide with:
+  - "Labs & Stack Technique"
+  - "Technical Project"
+  - "Podcast Directory Management"
+  - Prepared by: Ayoub Elfaquihi
+  - Supervisor: [ES-Saraj Fouad]
+  - Training Center: Solicode Tanger
+  - Institution: OFPPT
+- Add the OFPPT and Solicode logos at the top of the title slide.
+- Use a professional theme with dark blue and teal accents, white cards, and light gray background.
+- Include the following sections:
+  1. Introduction to the technical project
+  2. Description of the "Podcast Directory Management" project
+  3. Technical stack:
+     - Markup & Styling: HTML, CSS, Tailwind CSS
+     - Programming Languages: JavaScript, PHP
+     - Frameworks & Libraries: Laravel, Alpine.js
+     - Database & ORM: MySQL, Eloquent ORM
+  4. Explanation of what a lab is, why labs are important, and how they connect to the final project
+  5. A list of labs grouped into 4 phases:
+     - Phase 1 — Tools & Technologies (1–10)
+     - Phase 2 — Methodologies & Collaboration (11–16)
+     - Phase 3 — Development & Languages (17–24)
+     - Phase 4 — Project & Production (25–30)
+  6. A closing "Thank You!" slide with "Questions?"
+- Make the content bilingual or mixed French/English to match the style of the project.
+- Keep the presentation polished, visually structured, and easy to read.
+- Use HTML/CSS styling blocks inside the Markdown for cards, grid layout, and sections.
+- Keep all content concise and presentation-friendly.
+
+Output should be a clean, production-ready Marp slide deck that matches the style and structure of a well-designed academic presentation.
