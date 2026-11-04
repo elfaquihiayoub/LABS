@@ -11,13 +11,16 @@ Create one beginner-friendly **Marp presentation** in Markdown (`.md`) for web-d
 ## Mandatory workflow
 
 1. **Identify the topic:** Read the title and any supplied context, description, or assignment.
-2. **Confirm the problem:** If the real problem is missing, ask:  
+2. **Set the presentation context:** Establish the subject, audience, language, and level from the prompt or context. Default to beginner web-development learners, French, and beginner level unless the user indicates otherwise.
+3. **Confirm the problem:** If the real problem is missing, ask:
    « Quel problème ou besoin le formateur vous a-t-il demandé de résoudre avec ce lab ? »
-3. **Wait for the answer:** Do not invent the teacher's intention or ask again when the problem is already clear.
-4. **Classify the context:** Determine whether technical implementation and practical demonstration are required.
-5. **Plan the presentation:** Organize the slides before drafting. The plan slide must appear immediately after the title.
-6. **Research if necessary:** Prioritize the supplied context and reliable, preferably official documentation.
-7. **Create and validate:** Generate one Marp-compatible `.md` presentation.
+4. **Wait for the answer:** Do not invent the teacher's intention or ask again when the problem is already clear.
+5. **Classify the context:** Determine whether technical implementation and practical demonstration are required.
+6. **Plan the presentation:** Build the outline before drafting slide details. The plan slide must appear immediately after the title and match the actual presentation order.
+7. **Research if necessary:** Prioritize the supplied context and reliable, preferably official documentation.
+8. **Create and validate:** Generate one Marp-compatible `.md` presentation and any additional formats explicitly requested.
+
+Adapt the amount, density, and format of slide text to the presenter's stated preferences (for example, concise talking points, detailed explanations, or code-heavy slides). If no preference is given, keep slide text concise and practical. When modifying an existing presentation, inspect it and preserve its visual style, pacing, and conventions unless the user explicitly requests a redesign.
 
 ## Fixed technology stack
 
@@ -69,11 +72,13 @@ Choose the appropriate path according to the assignment's actual needs, not simp
 
 - Include valid Marp front matter with `marp: true`.
 - Separate slides using `---`.
-- Use a modern, professional, consistent design.
+- Use a modern, professional, consistent design with clear hierarchy, generous spacing, restrained accents, and accessible contrast. A slate/navy, teal, and soft-background palette is a suitable default for new presentations. Avoid making every slide the same conventional title-and-bullets layout.
+- Vary composition when it helps the content—for example, use split layouts, step sequences, visual callouts, comparison cards, or a focused code/demo area. Keep each slide uncluttered; do not add decorative elements without a teaching purpose.
 - Focus each slide on one main idea.
 - Prefer short bullets, clear headings, diagrams, and relevant code examples over long paragraphs.
 - Split crowded slides instead of shrinking content excessively.
 - Ensure the plan slide matches the actual slide sequence.
+- Keep visible slide content separate from oral explanations. Put optional speaker notes in Marp HTML comments so they do not appear on the slide; do not hide essential audience-facing information in notes.
 
 ## Content rules
 
@@ -83,12 +88,13 @@ Choose the appropriate path according to the assignment's actual needs, not simp
 - Keep the problem, solutions, practical demonstration, and validation aligned.
 - Do not fabricate teacher expectations, project requirements, commands, or results.
 - Ask for missing essential information instead of guessing.
+- Ensure the subject, audience, language, and level are suitable, and adapt content to the presenter's preferences.
 
 ## Output and workspace rules
 
-- Produce **one Marp-compatible `.md` presentation only**.
+- Produce **one Marp-compatible `.md` presentation**.
 - Use a filename such as `topic-slug-lab.md`.
-- Do not export PDF, PPTX, HTML, or other formats unless explicitly requested.
+- By default, create only the Marp `.md` file. Create another format only if the user requests it or it is already part of the requested deliverables. Whenever an export is requested, regenerate and verify it after every source modification.
 - Work only in the currently opened workspace. Do not scan unopened folders, parent folders, sibling folders, or unrelated areas.
 - Do not overwrite existing presentations unless the user clearly requests an update.
 
@@ -99,5 +105,7 @@ Choose the appropriate path according to the assignment's actual needs, not simp
 - Use only relevant technologies from the fixed stack.
 - Ensure technical examples are accurate and beginner-friendly.
 - Include Quick Start and Hello World only when practical implementation is required.
-- Ensure Marp syntax, readability, and consistency.
-- Return only the `.md` presentation and briefly mention any important assumptions or missing information.
+- Confirm the subject, audience, language, level, presenter preferences, and separation of visible content from oral notes are handled appropriately.
+- Ensure Marp syntax, readable modern styling (or preservation of the existing deck's style), and consistency.
+- If an export was requested, confirm it was regenerated and check that it renders correctly.
+- Return a link to the `.md` presentation and any requested exports, and briefly mention important assumptions or missing information.

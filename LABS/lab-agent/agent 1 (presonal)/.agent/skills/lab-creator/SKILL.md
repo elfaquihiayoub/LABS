@@ -6,14 +6,16 @@ argument-hint: <topic> [optional description]
 
 # Lab Presentation Creator
 
-Create one polished Marp **Markdown (`.md`) file only** from the topic in the user's prompt.
+Create one polished Marp **Markdown (`.md`) file** from the topic in the user's prompt. Create additional output formats only when requested.
 
 ## Input and research
 
 - Treat the topic/title as required; treat any prompt description, task text, or context as the preferred scope and source of intent.
 - **If a description is provided:** follow it closely; do not broaden the topic or perform unnecessary research. Verify only important technical claims when needed.
 - **If no description is provided:** search/research the topic by its title directly, prioritizing official documentation and reliable sources. Do not ask follow-up questions when sensible defaults suffice.
-- Audience: beginner web developers doing practical labs. Default language: French, unless the prompt clearly requests another language.
+- Before drafting, establish the subject, audience, language, and level from the prompt or context. Default to beginner web developers doing practical labs, French, and beginner level unless the user indicates otherwise.
+- Adapt the amount, density, and format of text to the presenter's stated preferences (for example, concise talking points, detailed explanations, or code-heavy slides). If no preference is given, keep slide text concise and practical.
+- When modifying an existing presentation, inspect it and preserve its visual style, pacing, and conventions unless the user explicitly requests a redesign. Use the modern visual style below for new presentations.
 
 ## Required slide order
 
@@ -26,6 +28,11 @@ Create one polished Marp **Markdown (`.md`) file only** from the topic in the us
 
 Use only as many problem/solution slides as the topic genuinely needs. Never alternate between problem and solution slides.
 
+## Planning and presentation notes
+
+- Draft the outline before writing slide details. Make sure the plan reflects the actual lab, and that every detailed slide supports that plan and follows the required order.
+- Keep on-slide content separate from oral explanations. Put optional speaker notes in Marp HTML comments so they do not appear in the visible slide; do not use notes as a place for essential information that the audience needs to read.
+
 ## Content rules
 
 - Bullets only; **no paragraphs**. Usually 2–4 short bullets per slide and one idea per slide.
@@ -35,6 +42,8 @@ Use only as many problem/solution slides as the topic genuinely needs. Never alt
 ## Visual style
 
 Use Marp Markdown with a modern, Tailwind-inspired visual system: clean cards/sections, generous spacing, strong hierarchy, restrained accents, consistent alignment, and accessible contrast. Do not use Tailwind utility classes directly; Marp slides need CSS.
+
+Avoid making every slide the same conventional title-and-bullets layout. Vary composition when it helps the content—for example, use split layouts, step sequences, visual callouts, comparison cards, or a focused code/demo area. Keep each slide uncluttered and do not add decorative elements without a teaching purpose.
 
 Use this baseline in the Marp front matter:
 
@@ -74,16 +83,17 @@ style: |
 - Work **only in the currently opened workspace/folder**. Do not navigate into, inspect, or scan unopened folders, sibling folders, parent directories, or unrelated project areas.
 - Create the presentation `.md` in the current workspace using a clear name such as `<topic-slug>-presentation.md`.
 - If the same presentation already exists, update it only when the user clearly asks to modify it; otherwise choose a non-destructive filename.
-- **Do not export or create PDF, PPTX, HTML, images, or other output formats. The sole deliverable is the Marp `.md` file.**
+- By default, create only the Marp `.md` file. Create another format only if the user requests it or it is already part of the requested deliverables. Whenever an export is requested, regenerate and verify it after every source modification.
 
 ## Final check
 
-Before responding, check the source only:
+Before responding, check the source (and any requested export):
 
 - Valid Marp front matter and `---` slide separators.
 - Title is slide 1; plan is slide 2; sections follow the required order.
 - Every problem has its own slide; all solutions follow all problems.
-- Bullet-only text, concise content, readable styling, and matching problem/solution logic.
-- Confirm the `.md` file exists. Do not render/export another format.
+- The subject, audience, language, and level are appropriate; the plan matches the lab; visible text and oral notes are separate.
+- Text matches the presenter's preferences, styling is readable and modern (or preserves the existing presentation's style), and problem/solution logic is coherent.
+- Confirm the `.md` file exists. If an export was requested, confirm it was regenerated and check that it renders correctly.
 
 Reply briefly with a link to the `.md` file and mention only important assumptions or corrections.
