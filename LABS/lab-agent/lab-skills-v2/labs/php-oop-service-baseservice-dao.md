@@ -17,7 +17,7 @@ size: 16:9
 | **Projet fil rouge** | Gestion de bibliothèque |
 | **Prototype technique** | Gestion des catégories / thématiques |
 | **Stack** | PHP natif et programmation orientée objet |
-| **Date du sprint** | [À compléter] |
+
 
 <!--
 Bonjour, je présente mon lab.
