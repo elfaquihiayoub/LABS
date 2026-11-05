@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des rayons - Alpine.js</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>[x-cloak] { display: none !important; }</style>
+</head>
+<body class="bg-slate-100 text-slate-800">
+    <div x-data="rayonManager" x-init="loadRayons()" @keydown.escape.window="closeDeleteConfirmation()">
+      <div class="flex min-h-screen">
+        <aside class="w-64 bg-slate-800 p-4 text-white">
+            <h2 class="mb-8 text-center text-2xl font-bold">GESTION</h2>
+            <nav>
+                <a href="#" class="block rounded-xl bg-slate-700 px-4 py-3 text-sm font-medium">Rayons</a>
+            </nav>
+        </aside>
+
+        <div class="flex flex-1 flex-col">
+            <header class="flex items-center justify-between border-b border-slate-200 bg-white px-6 py-4">
+                <h1 class="text-xl font-semibold">Gestion des rayons</h1>
+                <span class="text-sm text-slate-500">Admin</span>
+            </header>
+
+            <main class="space-y-6 p-6">
+                <section class="flex items-center justify-between gap-4">
+                    <div>
+                        <p class="text-sm uppercase tracking-wide text-slate-500">Classification</p>
+                        <h2 class="text-3xl font-bold">Rayons</h2>
+                    </div>
+                    <button @click="openCreateForm()" type="button" class="rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-700">
+                        + Ajouter un rayon
+                    </button>
+                </section>
+
+                <section x-cloak x-show="formOpen" x-transition class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                    <h3 class="mb-4 text-lg font-semibold text-slate-700" x-text="editingId === null ? 'Ajouter un rayon' : 'Modifier un rayon'"></h3>
+                    <form class="space-y-4" @submit.prevent="saveRayon()">
+                        <div class="grid gap-4 md:grid-cols-2">
+                            <div>
+                                <label for="nom_rayon" class="mb-2 block text-sm font-medium text-slate-700">Nom du rayon</label>
+                                <input id="nom_rayon" name="nom_rayon" type="text" required x-model="form.nom" class="w-full rounded-xl border border-slate-300 px-3 py-2">
+                            </div>
+                            <div>
+                                <label for="emplacement" class="mb-2 block text-sm font-medium text-slate-700">Emplacement</label>
+                                <input id="emplacement" name="emplacement" type="text" x-model="form.emplacement" class="w-full rounded-xl border border-slate-300 px-3 py-2">
+                            </div>
+                        </div>
+                        <div class="flex justify-end gap-3">
+                            <button @click="closeForm()" type="button" class="rounded-xl border border-slate-300 px-4 py-2 text-slate-600">
+                                Annuler
+                            </button>
+                            <button type="submit" :disabled="saving" class="rounded-xl bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60">
+                                <span x-text="saving ? 'Enregistrement...' : 'Enregistrer'"></span>
+                            </button>
+                        </div>
+                    </form>
+                </section>
+
+                <section class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                    <div class="flex flex-col gap-3 border-b border-slate-200 px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
+                        <h3 class="text-lg font-semibold text-slate-700">Liste des rayons</h3>
+                        <label class="sr-only" for="rayon-search">Rechercher un rayon</label>
+                        <input id="rayon-search" type="search" x-model="search" placeholder="Rechercher un rayon..."
+                            class="w-full rounded-xl border border-slate-300 px-3 py-2 sm:max-w-xs">
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-slate-200">
+                            <thead class="bg-slate-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium uppercase text-slate-500">ID</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium uppercase text-slate-500">Nom</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium uppercase text-slate-500">Emplacement</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium uppercase text-slate-500">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 bg-white">
+                                <template x-for="rayon in filteredRayons" :key="rayon.id">
+                                    <tr>
+                                        <td class="px-6 py-4 text-sm text-slate-500" x-text="rayon.id"></td>
+                                        <td class="px-6 py-4 text-sm font-medium text-slate-700" x-text="rayon.nom"></td>
+                                        <td class="px-6 py-4 text-sm text-slate-600" x-text="rayon.emplacement || '-'"></td>
+                                        <td class="space-x-3 px-6 py-4 text-sm">
+                                            <button @click="openEditForm(rayon)" type="button" class="font-medium text-blue-600 hover:text-blue-800">Modifier</button>
+                                            <button @click="askToDelete(rayon)" type="button" class="font-medium text-red-600 hover:text-red-800">Supprimer</button>
+                                        </td>
+                                    </tr>
+                                </template>
+                                <tr x-cloak x-show="!loading && filteredRayons.length === 0">
+                                    <td colspan="4" class="px-6 py-8 text-center text-sm text-slate-500" x-text="search ? 'Aucun rayon ne correspond à la recherche.' : 'Aucun rayon enregistré.'"></td>
+                                </tr>
+                                <tr x-cloak x-show="loading">
+                                    <td colspan="4" class="px-6 py-8 text-center text-sm text-slate-500">Chargement des rayons...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+    <div class="pointer-events-none fixed right-4 top-4 z-50 space-y-2">
+        <template x-for="toast in toasts" :key="toast.id">
+            <div x-transition x-text="toast.message"
+                :class="toast.type === 'success' ? 'bg-green-600' : 'bg-red-600'"
+                class="rounded-lg px-4 py-3 text-white shadow-lg"></div>
+        </template>
+    </div>
+
+        <div x-cloak x-show="deleteConfirmationOpen" x-transition
+            class="fixed inset-0 z-40 flex items-center justify-center bg-slate-900/50 p-4"
+            @click.self="closeDeleteConfirmation()">
+            <section role="dialog" aria-modal="true" aria-labelledby="delete-title" class="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
+                <h2 id="delete-title" class="text-lg font-semibold text-slate-800">Supprimer le rayon ?</h2>
+                <p class="mt-2 text-sm text-slate-600">
+                    Confirmez la suppression de « <span class="font-medium" x-text="rayonToDelete?.nom"></span> ».
+                </p>
+                <div class="mt-6 flex justify-end gap-3">
+                    <button @click="closeDeleteConfirmation()" type="button" class="rounded-xl border border-slate-300 px-4 py-2 text-slate-600">Annuler</button>
+                    <button @click="deleteRayon()" type="button" :disabled="deleting"
+                        class="rounded-xl bg-red-600 px-4 py-2 text-white hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-60">
+                        <span x-text="deleting ? 'Suppression...' : 'Supprimer'"></span>
+                    </button>
+                </div>
+            </section>
+        </div>
+    </div>
+    </div>
+
+    <script defer src="./assets/app.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</body>
+</html>

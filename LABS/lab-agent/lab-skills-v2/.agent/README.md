@@ -1,38 +1,60 @@
-Service: Handles business logic and validation.
+# Presentation: Alpine.js — Reactive Frontend Development
 
-BaseService: Parent class containing common reusable methods.
+## Main Objective
 
-Inheritance: Specific Services extend BaseService to reuse functionality.
+Understand Alpine.js, its core directives, and how it simplifies frontend interactivity by integrating it into an existing PHP 3-Tier Rayon Management application.
 
-DAO (Data Access Object): Handles data access and storage operations.
+## Topics to Cover
 
-Separation of Concerns: Each class has a specific responsibility.
+- **Alpine.js:** Introduction and purpose.
+- **x-data:** Defining reactive data and component state.
+- **x-model:** Binding form inputs to data.
+- **x-show:** Controlling element visibility.
+- **x-for:** Dynamically rendering lists.
+- **x-text:** Displaying reactive values.
+- **Events:** Handling user interactions using @click and @submit.prevent.
+- **x-transition:** Adding simple interface transitions.
+- **Fetch API:** Communicating with the existing PHP backend.
+- **Reactivity:** Understanding how data changes automatically update the interface.
+- **Integration:** Using Alpine.js in the Rayon Management application.
 
-Workflow: Controller → Service → BaseService / DAO → Data Storage.
-
-Practical Example: Category / Thematique CRUD management.
-
-PHP Code Examples: BaseService, CategoryService, and CategoryDAO.
 ## Lab Objective
 
 **Main Objective:**
 
-Understand and explain the PHP OOP architecture based on Service, BaseService and DAO, including their responsibilities, relationships, inheritance and workflow.
+Understand how Alpine.js simplifies frontend development by managing reactive data, UI interactions, and dynamic rendering directly within HTML.
 
 **Learning Outcomes:**
 
 At the end of this Lab, the learner should be able to:
 
-- Explain the role of Service, BaseService and DAO.
-- Understand how inheritance allows Services to reuse common methods.
-- Explain the principle of Separation of Concerns.
-- Understand the workflow between Controller, Service, BaseService, DAO and Data Storage.
-- Analyze and explain PHP code examples using CategoryService, BaseService and CategoryDAO.
+- Explain what Alpine.js is and why it is used.
+- Understand the fundamental Alpine.js directives.
+- Manage reactive data and component state.
+- Handle events and form interactions.
+- Dynamically display and filter data.
+- Use Fetch API with Alpine.js to communicate with a PHP backend.
+- Explain how Alpine.js fits into the Presentation Layer of a 3-Tier Architecture.
 
-**Practical Example:**
+## Practical Example
 
-Use Category / Thematique management to illustrate how these components work together.
+Use the existing Rayon Management application to demonstrate:
 
-**Important Scope:**
+- Displaying Rayons dynamically.
+- Searching and filtering Rayons.
+- Opening and closing Add/Edit forms.
+- Handling CRUD operations.
+- Displaying loading indicators and notifications.
+- Communicating with the PHP backend without reloading the page.
 
-The main purpose is learning, understanding and explaining the architecture. Code examples are used to illustrate the concepts. Building a complete CRUD application is not the primary objective.
+## Important Scope
+
+- Focus on learning and understanding Alpine.js.
+- Explain directives using short, beginner-friendly examples.
+- Demonstrate concepts through the Rayon project.
+- Preserve the existing PHP 3-Tier architecture.
+- Keep Alpine.js in the Presentation Layer.
+- Focus on practical demonstrations rather than unnecessary theory.
+- Avoid advanced Alpine.js concepts not required for this Lab.
+
+**Main Purpose:** Help students understand how Alpine.js makes HTML interfaces interactive and reactive while communicating with an existing PHP backend.
