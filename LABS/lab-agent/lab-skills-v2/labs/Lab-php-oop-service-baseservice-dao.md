@@ -1,484 +1,265 @@
-# Lab : Architecture PHP OOP avec Service, BaseService et DAO
+# Lab : Comprendre l'architecture PHP OOP — Service, BaseService et DAO
 
-> **Sujet :** créer une catégorie à partir d'un formulaire JavaScript, valider la demande dans un Service et enregistrer les données dans un fichier JSON avec un DAO.
+> **Consigne :** ce lab porte sur la compréhension et l'explication de l'architecture. Analysez les responsabilités, les relations et le flux à partir d'exemples PHP. Vous n'avez pas à construire une application CRUD complète.
 
 ## 1. Présentation du Lab
 
 ### 1.1 Métadonnées
 
-- **Technologie :** PHP natif, programmation orientée objet, JavaScript Fetch et JSON
-- **Niveau :** débutant en POO
-- **Durée estimée :** 2 heures
-- **Prérequis :** PHP 8.1 ou plus récent, terminal, navigateur et notions de HTML/JavaScript
-- **Base de données :** aucune; le fichier JSON sert de stockage pédagogique
+- **Technologie ciblée :** PHP natif et programmation orientée objet
+- **Niveau :** débutant
+- **Durée estimée :** [À compléter]
+- **Apprenant :** [Nom et prénom]
+- **Projet fil rouge :** [Nom du projet]
+- **Prototype technique :** gestion des catégories / thématiques
+- **Prérequis :** notions de classes, objets et syntaxe PHP
 
 ### 1.2 Introduction
 
-Ce lab montre comment organiser une petite fonctionnalité PHP en classes simples. Nous créons une catégorie et séparons la représentation des données, les règles métier et le stockage.
+[En 2 ou 3 phrases, présentez l'architecture Service, BaseService et DAO et expliquez pourquoi les responsabilités sont séparées.]
 
 ### 1.3 Contexte et objectif
 
-Un formulaire permet à l'utilisateur d'ajouter une catégorie ou thématique. À la fin du lab, l'apprenant sait expliquer et réaliser le flux complet :
+- **Contexte :** une application doit gérer des catégories ou thématiques.
+- **Objectif :** comprendre et expliquer le rôle du Service, du BaseService, du DAO et leurs relations avec le Controller et le stockage.
+
+À la fin du lab, l'apprenant doit pouvoir :
+
+- expliquer chaque responsabilité avec ses propres mots ;
+- décrire comment l'héritage permet à des Services de réutiliser des méthodes communes ;
+- suivre le flux `Controller → Service → BaseService / DAO → Data Storage` ;
+- analyser des extraits PHP illustrant la gestion de catégories ;
+- comparer cette organisation à du PHP regroupé dans une seule page.
+
+**Hors périmètre :** réaliser une application CRUD complète ou construire une interface JavaScript.
+
+### 1.4 Expression du besoin
+
+Expliquez comment l'architecture répartit les responsabilités lorsqu'une catégorie est créée ou consultée :
+
+- **Donnée métier :** catégorie / thématique.
+- **Besoin d'organisation :** séparer logique métier, méthodes communes et accès aux données.
+- **Résultat attendu :** pouvoir expliquer le trajet d'une demande jusqu'au stockage et le rôle de chaque classe.
+
+### 1.5 Position dans la stack
+
+Complétez le rôle de chaque élément dans vos mots :
 
 ```text
-Formulaire → JavaScript Fetch → Controller → CategoryService
-                                      ↓             ↓
-                                    réponse     BaseService
-                                                    ↓
-                                                CategoryDAO → categories.json
+Controller [________________________]
+      │
+      ▼
+Service [___________________________]
+      │                 │
+      │                 └── hérite de BaseService [__________]
+      ▼
+DAO [_______________________________]
+      │
+      ▼
+Data Storage [______________________]
 ```
 
-Le résultat attendu est une catégorie validée, affichée dans le navigateur et enregistrée dans `storage/categories.json`.
+## 2. Explication théorique et analyse
 
-### 1.4 Besoin
+### 2.1 Notions fondamentales
 
-- Accepter un nom de catégorie envoyé en JSON.
-- Refuser un nom vide ou un doublon sans tenir compte de la casse.
-- Persister les catégories dans un fichier JSON.
-- Retourner une réponse JSON et un statut HTTP adaptés.
+Complétez les définitions et donnez un exemple lié à la catégorie :
 
-## 2. Notions théoriques
-
-| Notion | Définition simple | Exemple dans le lab |
+| Notion | Définition avec mes mots | Exemple |
 |---|---|---|
-| Classe | Plan qui définit les données et comportements d'un type d'objet | `CategoryService` |
-| Objet | Instance créée à partir d'une classe | Une catégorie nommée « Design » |
-| Encapsulation | Regroupement des données et comportements liés | Le DAO regroupe la lecture et l'écriture du JSON |
-| Entity | Objet qui représente une donnée métier | `Category` |
-| DAO | Objet responsable de l'accès au stockage | `CategoryDAO` |
-| Service | Objet qui applique les règles métier | `CategoryService` |
-| Héritage | Une classe enfant réutilise les méthodes de sa classe parent | `CategoryService extends BaseService` |
+| Classe | [À compléter] | [À compléter] |
+| Objet | [À compléter] | [À compléter] |
+| Encapsulation | [À compléter] | [À compléter] |
+| Héritage | [À compléter] | [À compléter] |
+| Service | [À compléter] | [À compléter] |
+| BaseService | [À compléter] | [À compléter] |
+| DAO | [À compléter] | [À compléter] |
+| Séparation des responsabilités | [À compléter] | [À compléter] |
 
-### Responsabilité des classes
+### 2.2 Responsabilités et relations
 
-- **Entity :** représente une catégorie en mémoire; elle ne connaît ni HTTP ni le stockage.
-- **DAO :** convertit les données JSON en objets et enregistre les objets dans le fichier.
-- **BaseService :** contient de petites méthodes réutilisables par plusieurs Services.
-- **CategoryService :** applique les règles liées à une catégorie et demande au DAO de la sauvegarder.
-- **Controller :** reçoit les données HTTP et coordonne le Service et la réponse.
+Pour chaque composant, précisez ce qu'il fait et ce qu'il ne fait pas :
 
-Le Service utilise le DAO; le Controller ne lit pas lui-même le fichier. Cette séparation rend chaque responsabilité plus facile à comprendre et à modifier.
+- **Controller :** [À compléter]
+- **CategoryService :** [À compléter]
+- **BaseService :** [À compléter]
+- **CategoryDAO :** [À compléter]
+- **Data Storage :** [À compléter]
 
-### Architecture traditionnelle et architecture séparée
-
-| PHP traditionnel dans une seule page | Architecture de ce lab |
-|---|---|
-| HTTP, validation et fichier mélangés | Une responsabilité par classe |
-| Logique répétée dans plusieurs pages | Méthodes communes dans `BaseService` |
-| Changer le stockage touche plusieurs endroits | Le DAO centralise le stockage |
-| Les erreurs sont difficiles à isoler | Les rôles sont plus faciles à tester |
-
-Pour un script très court, cette organisation peut être excessive. Elle devient plus utile lorsque l'application comporte plusieurs fonctionnalités.
-
-## 3. Réalisation pratique
-
-### 3.1 Préparer le projet
-
-Créez cette structure :
+Complétez le diagramme avec les relations et les responsabilités :
 
 ```text
-php-category-lab/
-├── public/
-│   ├── index.php
-│   └── index.html
-├── src/
-│   ├── Controller/CategoryController.php
-│   ├── DAO/CategoryDAO.php
-│   ├── Entity/Category.php
-│   └── Service/
-│       ├── BaseService.php
-│       └── CategoryService.php
-└── storage/
-    └── categories.json
+                 ┌─────────────────┐
+                 │   BaseService   │
+                 └────────▲────────┘
+                          │ hérite
+                 ┌────────┴────────┐        utilise       ┌─────────────┐
+                 │ CategoryService ├─────────────────────►│ CategoryDAO │
+                 └────────▲────────┘                      └──────┬──────┘
+                          │ appelé                               │
+                 ┌────────┴────────┐                             ▼
+                 │   Controller    │                       Data Storage
+                 └─────────────────┘
 ```
 
-Initialisez `storage/categories.json` avec une liste vide :
+### 2.3 Analyse des exemples PHP
 
-```json
-[]
-```
+Étudiez les exemples PHP de `BaseService`, `CategoryService` et `CategoryDAO` fournis par le formateur ou le skill technique associé. Collez ou référencez les extraits à analyser ci-dessous; ils servent de support de lecture et ne sont pas un exercice de création d'un CRUD complet.
 
-Dans le terminal, placez-vous dans `php-category-lab`, puis lancez le serveur PHP avec `index.php` comme routeur :
-
-```bash
-php -S 127.0.0.1:8000 -t public public/index.php
-```
-
-Le dossier `storage/` doit être accessible en écriture par PHP. Ce serveur intégré convient au développement local, pas à une mise en production.
-
-### 3.2 Étape 1 — Créer l'Entity
-
-Dans `src/Entity/Category.php`, représentez une catégorie. Les propriétés `readonly` évitent leur modification après la construction de l'objet.
+#### Exemple `BaseService`
 
 ```php
-<?php
-
-final class Category
-{
-    public function __construct(
-        public readonly string $id,
-        public readonly string $name
-    ) {
-    }
-
-    public function toArray(): array
-    {
-        return ['id' => $this->id, 'name' => $this->name];
-    }
-}
+[Insérer ici l'extrait fourni à analyser]
 ```
 
-**À vérifier :** une catégorie possède toujours un identifiant et un nom. L'Entity ne valide pas les règles métier.
-
-### 3.3 Étape 2 — Créer le DAO
-
-Dans `src/DAO/CategoryDAO.php`, centralisez les opérations sur le fichier JSON :
+#### Exemple `CategoryService`
 
 ```php
-<?php
-
-final class CategoryDAO
-{
-    public function __construct(private string $filePath)
-    {
-    }
-
-    /** @return Category[] */
-    public function findAll(): array
-    {
-        if (!is_file($this->filePath)) {
-            return [];
-        }
-
-        $json = file_get_contents($this->filePath);
-        if ($json === false) {
-            throw new RuntimeException('Impossible de lire le fichier.');
-        }
-
-        $rows = json_decode($json, true, 512, JSON_THROW_ON_ERROR);
-        if (!is_array($rows) || !array_is_list($rows)) {
-            throw new RuntimeException('Le fichier JSON doit contenir une liste.');
-        }
-
-        $categories = [];
-        foreach ($rows as $row) {
-            if (
-                !is_array($row)
-                || !isset($row['id'], $row['name'])
-                || !is_string($row['id'])
-                || !is_string($row['name'])
-            ) {
-                throw new RuntimeException('Une catégorie du fichier est invalide.');
-            }
-
-            $categories[] = new Category($row['id'], $row['name']);
-        }
-
-        return $categories;
-    }
-
-    public function save(Category $category): void
-    {
-        $categories = $this->findAll();
-        $categories[] = $category;
-
-        $rows = array_map(
-            static fn (Category $item): array => $item->toArray(),
-            $categories
-        );
-        $json = json_encode($rows, JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR);
-
-        if (file_put_contents($this->filePath, $json, LOCK_EX) === false) {
-            throw new RuntimeException('Impossible d\'écrire le fichier.');
-        }
-    }
-}
+[Insérer ici l'extrait fourni à analyser]
 ```
 
-`findAll()` lit le fichier et construit des Entities. `save()` ajoute une Entity et réécrit la liste. `LOCK_EX` verrouille le fichier pendant l'écriture, mais ne rend pas l'ensemble lecture-modification-écriture sûr face à des requêtes simultanées. Un fichier JSON est ici un stockage d'apprentissage, pas une base adaptée à une application multi-utilisateur.
-
-### 3.4 Étape 3 — Créer le BaseService
-
-Dans `src/Service/BaseService.php`, placez les méthodes simples partagées :
+#### Exemple `CategoryDAO`
 
 ```php
-<?php
-
-abstract class BaseService
-{
-    protected function requireText(string $value, string $field): string
-    {
-        $value = trim($value);
-        if ($value === '') {
-            throw new InvalidArgumentException("$field est obligatoire.");
-        }
-
-        return $value;
-    }
-
-    protected function newId(): string
-    {
-        return bin2hex(random_bytes(8));
-    }
-}
+[Insérer ici l'extrait fourni à analyser]
 ```
 
-La classe est `abstract` : on ne crée pas directement de `BaseService`. Les Services spécialisés héritent de ses méthodes.
+Pour chaque classe, répondez sans recopier une solution complète :
 
-### 3.5 Étape 4 — Créer le CategoryService
+| Fichier / classe | Quelle est sa responsabilité ? | Quelle méthode ou ligne le montre ? | Quelles données entrent et sortent ? |
+|---|---|---|---|
+| `BaseService` | [À compléter] | [À compléter] | [À compléter] |
+| `CategoryService` | [À compléter] | [À compléter] | [À compléter] |
+| `CategoryDAO` | [À compléter] | [À compléter] | [À compléter] |
 
-Dans `src/Service/CategoryService.php`, placez les règles métier de création :
+Questions d'analyse :
 
-```php
-<?php
+1. Quelle classe porte les règles métier ? [À compléter]
+2. Quelle classe communique avec le stockage ? [À compléter]
+3. Comment `CategoryService` réutilise-t-il `BaseService` ? [À compléter]
+4. Pourquoi le Controller ne devrait-il pas accéder directement au stockage ? [À compléter]
 
-final class CategoryService extends BaseService
-{
-    public function __construct(private CategoryDAO $dao)
-    {
-    }
+### 2.4 Suivre le workflow
 
-    public function create(string $name): Category
-    {
-        $name = $this->requireText($name, 'Le nom');
+En vous appuyant sur les exemples, décrivez le chemin d'une opération de catégorie :
 
-        foreach ($this->dao->findAll() as $existing) {
-            if (strcasecmp($existing->name, $name) === 0) {
-                throw new InvalidArgumentException('Cette catégorie existe déjà.');
-            }
-        }
+1. Le Controller reçoit ou prépare : [____________________________]
+2. Le Service applique : [_______________________________________]
+3. Le BaseService fournit : [____________________________________]
+4. Le DAO réalise : [___________________________________________]
+5. Le stockage conserve ou retourne : [__________________________]
+6. Le résultat revient vers : [__________________________________]
 
-        $category = new Category($this->newId(), $name);
-        $this->dao->save($category);
+### 2.5 Comparaison avec une architecture traditionnelle
 
-        return $category;
-    }
-}
-```
+| Critère | PHP regroupé dans une page | Service / BaseService / DAO |
+|---|---|---|
+| Emplacement des règles métier | [À compléter] | [À compléter] |
+| Emplacement de l'accès aux données | [À compléter] | [À compléter] |
+| Réutilisation des méthodes communes | [À compléter] | [À compléter] |
+| Effet d'un changement de stockage | [À compléter] | [À compléter] |
+| Lisibilité et maintenance | [À compléter] | [À compléter] |
 
-Le Service réutilise `requireText()` et `newId()` grâce à l'héritage. `strcasecmp()` compare les noms sans tenir compte de la casse pour les caractères ASCII.
+### 2.6 Avantages et limites
 
-### 3.6 Étape 5 — Créer le Controller
+- **Réutilisation :** [Donnez un exemple de méthode partagée.]
+- **Moins de duplication :** [Expliquez où le code commun est placé.]
+- **Organisation :** [Expliquez comment chaque classe a une responsabilité définie.]
+- **Maintenabilité :** [Expliquez ce qui devient plus facile à changer.]
+- **Limite :** [Expliquez pourquoi cette structure peut être excessive pour un très petit script.]
 
-Dans `src/Controller/CategoryController.php`, vérifiez la forme des données puis déléguez la règle métier :
+### 2.7 Skill IA technique proposé
 
-```php
-<?php
+- **Nom proposé :** `php-oop-architecture-tutor`
+- **Mission :** aider à comprendre et analyser des exemples de Service, BaseService et DAO sans générer une application CRUD complète.
+- **Prochaine étape :** utiliser `plugin-dev` pour concevoir ce skill si le lab le requiert.
 
-final class CategoryController
-{
-    public function __construct(private CategoryService $service)
-    {
-    }
+## 3. Activité pratique — analyser, ne pas construire le CRUD
 
-    public function store(array $input): array
-    {
-        $name = $input['name'] ?? null;
-        if (!is_string($name)) {
-            throw new InvalidArgumentException('Le champ name est obligatoire.');
-        }
+### 3.1 Préparation
 
-        return $this->service->create($name)->toArray();
-    }
-}
-```
+- **Version PHP disponible :** [Facultatif, relever avec `php -v` si vous exécutez les extraits]
+- **Exemples à étudier :** [Lister les fichiers PHP fournis par le formateur ou le skill technique]
+- **Support d'analyse :** [Compléter les tableaux et schémas de ce document]
 
-Le Controller ne valide pas les règles spécifiques de nom et ne touche pas au stockage.
+### 3.2 Parcours d'analyse
 
-### 3.7 Étape 6 — Relier les classes à HTTP
+#### Étape 1 — Repérer les classes
 
-Dans `public/index.php`, chargez les classes, acceptez uniquement `POST /api/categories` et transformez les résultats en réponses HTTP JSON :
+- Identifiez `BaseService`, `CategoryService` et `CategoryDAO`.
+- Relevez leurs propriétés, méthodes et dépendances.
+- **Mes observations :** [À compléter]
 
-```php
-<?php
+#### Étape 2 — Identifier l'héritage
 
-if (
-    PHP_SAPI === 'cli-server'
-    && parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) === '/index.html'
-) {
-    return false;
-}
+- Repérez la déclaration d'héritage de `CategoryService`.
+- Nommez les méthodes héritées ou réutilisées.
+- Expliquez pourquoi elles sont communes.
+- **Mon explication :** [À compléter]
 
-require_once __DIR__ . '/../src/Entity/Category.php';
-require_once __DIR__ . '/../src/DAO/CategoryDAO.php';
-require_once __DIR__ . '/../src/Service/BaseService.php';
-require_once __DIR__ . '/../src/Service/CategoryService.php';
-require_once __DIR__ . '/../src/Controller/CategoryController.php';
+#### Étape 3 — Identifier la séparation des responsabilités
 
-header('Content-Type: application/json; charset=utf-8');
+- Associez chaque action (validation, règles métier, stockage) à une classe.
+- Repérez les responsabilités qui seraient mélangées dans une approche traditionnelle.
+- **Mon tableau d'analyse :** [À compléter]
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST'
-    || parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) !== '/api/categories') {
-    http_response_code(404);
-    echo json_encode(['error' => 'Route introuvable.']);
-    exit;
-}
+#### Étape 4 — Expliquer le workflow
 
-try {
-    $body = file_get_contents('php://input');
-    if ($body === false) {
-        throw new RuntimeException('Impossible de lire la requête.');
-    }
+- Suivez un exemple de création ou de lecture de catégorie dans les extraits.
+- Tracez les appels entre Controller, Service, BaseService, DAO et stockage.
+- **Mon schéma annoté :** [À compléter]
 
-    $input = json_decode($body, true, 512, JSON_THROW_ON_ERROR);
-    if (!is_array($input)) {
-        throw new InvalidArgumentException('Le corps JSON doit être un objet.');
-    }
+#### Étape 5 — Présenter les bénéfices
 
-    $dao = new CategoryDAO(__DIR__ . '/../storage/categories.json');
-    $service = new CategoryService($dao);
-    $controller = new CategoryController($service);
-    $category = $controller->store($input);
+- Choisissez deux avantages de cette organisation.
+- Donnez un exemple précis à partir des extraits.
+- Citez une limite ou un coût de cette séparation.
+- **Mon explication :** [À compléter]
 
-    http_response_code(201);
-    echo json_encode($category, JSON_THROW_ON_ERROR);
-} catch (JsonException $exception) {
-    http_response_code(400);
-    echo json_encode(['error' => 'Le JSON envoyé est invalide.']);
-} catch (InvalidArgumentException $exception) {
-    http_response_code(422);
-    echo json_encode(['error' => $exception->getMessage()]);
-} catch (Throwable $exception) {
-    error_log((string) $exception);
-    http_response_code(500);
-    echo json_encode(['error' => 'Une erreur interne est survenue.']);
-}
-```
+### 3.3 Vérification de compréhension
 
-Le point d'entrée traduit les exceptions en statuts HTTP. Les erreurs internes sont journalisées plutôt que renvoyées au navigateur.
+Répondez sans consulter vos notes :
 
-### 3.8 Étape 7 — Envoyer la catégorie avec Fetch
+1. Quelle classe doit être modifiée si les règles métier d'une catégorie changent ? Pourquoi ?
+2. Quelle classe doit être modifiée si la manière de stocker les données change ? Pourquoi ?
+3. À quoi sert le BaseService ?
+4. Quelle est la différence entre le Service et le DAO ?
+5. Quel problème la séparation des responsabilités réduit-elle ?
 
-Dans `public/index.html`, créez un formulaire et envoyez son contenu au Controller :
+**Mes réponses :** [À compléter]
 
-```html
-<!doctype html>
-<html lang="fr">
-<head>
-  <meta charset="utf-8">
-  <title>Gestion des catégories</title>
-</head>
-<body>
-  <h1>Créer une catégorie</h1>
-  <form id="category-form">
-    <label for="name">Nom</label>
-    <input id="name" name="name" required>
-    <button type="submit">Créer</button>
-  </form>
-  <p id="message" role="status"></p>
+### 3.4 Skill IA utilisé
 
-  <script>
-    const form = document.querySelector('#category-form');
-    const message = document.querySelector('#message');
+- **Nom du skill :** `php-oop-architecture-tutor` [à confirmer ou modifier]
+- **Aide reçue :** [Expliquer comment il a aidé à comprendre les extraits]
+- **Vérification personnelle :** [Expliquer une notion que vous savez maintenant présenter sans aide]
 
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      const name = new FormData(form).get('name');
+## 4. Défi Sprint devant le formateur
 
-      try {
-        const response = await fetch('/api/categories', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify({ name })
-        });
-        const result = await response.json();
+### 4.1 Démonstration en cinq minutes
 
-        if (!response.ok) {
-          throw new Error(result.error ?? 'La création a échoué.');
-        }
+1. Présentez le besoin de gestion de catégories / thématiques.
+2. Expliquez le diagramme de classes.
+3. Suivez un exemple fourni du Controller au stockage.
+4. Comparez brièvement cette organisation à une page PHP regroupant toutes les responsabilités.
 
-        message.textContent = `Catégorie créée : ${result.name}`;
-        form.reset();
-      } catch (error) {
-        message.textContent = error.message;
-      }
-    });
-  </script>
-</body>
-</html>
-```
+### 4.2 Mini-défi
 
-Ouvrez `http://127.0.0.1:8000/index.html` dans le navigateur. `fetch()` envoie le JSON, et `response.ok` permet de distinguer une réponse HTTP réussie d'une erreur.
+Le formateur choisit une classe dans les extraits. Expliquez :
 
-### 3.9 Comprendre le flux de création
+- sa responsabilité ;
+- les classes avec lesquelles elle communique ;
+- une conséquence si elle prenait aussi en charge le rôle d'une autre classe.
 
-1. L'utilisateur entre `Design` dans le formulaire et clique sur **Créer**.
-2. JavaScript envoie `{"name":"Design"}` avec une requête HTTP `POST`.
-3. Le Controller décode le JSON et appelle `CategoryService::create()`.
-4. Le Service nettoie et valide le nom, puis construit l'Entity `Category`.
-5. Le DAO ajoute la catégorie à `storage/categories.json`.
-6. Le Controller renvoie le JSON créé avec le statut `201`; le navigateur affiche le nom.
+### 4.3 Checklist de validation
 
-Après la création, le fichier contient par exemple :
+- [ ] L'apprenant définit Service, BaseService et DAO avec ses mots.
+- [ ] L'apprenant explique l'héritage entre CategoryService et BaseService.
+- [ ] L'apprenant suit le workflow Controller → Service → BaseService / DAO → Data Storage.
+- [ ] L'apprenant analyse des extraits PHP de CategoryService, BaseService et CategoryDAO.
+- [ ] L'apprenant donne des avantages concrets de la séparation des responsabilités.
+- [ ] La démonstration porte sur la compréhension de l'architecture, pas sur un CRUD complet.
 
-```json
-[
-  {
-    "id": "identifiant-genere",
-    "name": "Design"
-  }
-]
-```
+### 4.4 Intégration dans le projet fil rouge
 
-### 3.10 Vérifier le résultat
-
-- Créer `Design` : réponse HTTP `201`, message de succès et entrée dans le fichier JSON.
-- Envoyer un nom vide ou des espaces : réponse HTTP `422`.
-- Créer `Design`, puis `design` : la deuxième requête renvoie `422` pour doublon.
-- Envoyer du JSON mal formé : réponse HTTP `400`.
-- Vérifier le terminal PHP en cas d'erreur interne : le détail est dans le journal du serveur.
-
-Les autres opérations CRUD suivraient la même direction `Controller → Service → DAO` :
-
-- **Read :** le Service demande au DAO la liste avec `findAll()`.
-- **Update :** le Service valide les nouvelles valeurs, puis demande au DAO de mettre à jour l'entrée ciblée.
-- **Delete :** le Service vérifie les règles métier, puis demande au DAO de retirer l'entrée ciblée.
-
-## 4. Fichiers et responsabilités
-
-| Fichier | Responsabilité |
-|---|---|
-| `src/Entity/Category.php` | Représenter une catégorie |
-| `src/DAO/CategoryDAO.php` | Lire et écrire le stockage JSON |
-| `src/Service/BaseService.php` | Fournir des aides communes aux Services |
-| `src/Service/CategoryService.php` | Appliquer les règles métier de catégorie |
-| `src/Controller/CategoryController.php` | Recevoir les données et appeler le Service |
-| `public/index.php` | Relier la requête HTTP au Controller et produire la réponse |
-| `public/index.html` | Afficher le formulaire et envoyer la requête Fetch |
-| `storage/categories.json` | Conserver les catégories de cet exemple |
-
-## 5. Défi Sprint devant le formateur
-
-### Démonstration en cinq minutes
-
-1. Créer une catégorie depuis le formulaire.
-2. Montrer la réponse JSON et le contenu du fichier.
-3. Envoyer un nom vide et un doublon, puis expliquer les statuts HTTP.
-4. Montrer le diagramme et expliquer le rôle de `BaseService`, `CategoryService` et `CategoryDAO`.
-
-### Mini-défi
-
-Ajouter une règle limitant le nom à 80 caractères. Placez la règle dans `CategoryService`, puis vérifiez qu'un nom trop long est refusé avec `422`.
-
-### Intégration dans le projet fil rouge
-
-Remplacez le fichier JSON par le stockage choisi pour le prototype, tout en gardant les responsabilités séparées. Dans une application avec plusieurs utilisateurs, préférez une base de données au fichier JSON.
-
-## 6. À retenir
-
-- L'Entity représente les données.
-- Le DAO gère l'accès au stockage.
-- Le Service contient les règles métier.
-- Le BaseService partage quelques méthodes réutilisables par héritage.
-- Le Controller fait le lien entre HTTP et les classes métier.
-- La séparation réduit les duplications et facilite l'évolution du code.
-
-## 7. Limites et prérequis techniques
-
-- PHP 8.1+ est requis pour les propriétés `readonly` et `array_is_list()`.
-- Les fichiers utilisent `require_once` pour rester simples dans ce lab; un projet plus grand peut utiliser Composer et l'autoloading PSR-4.
-- Le fichier JSON ne gère pas de manière fiable plusieurs écritures concurrentes; il sert uniquement à comprendre la séparation des responsabilités.
-- L'exemple ne met pas en place l'authentification, les protections CSRF, ni une configuration de production.
+[Expliquez où ce découpage pourrait aider votre prototype et quelles classes de votre projet pourraient jouer ces rôles.]

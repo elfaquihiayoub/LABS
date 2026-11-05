@@ -34,6 +34,6 @@ Ce dépôt contient les compétences IA (Skills) pour assister le développement
   3. Créer le skill technique requis avec `plugin-dev`.
 
 ## 5. Labs disponibles
-- [Lab PHP OOP : Service, BaseService et DAO](labs/Lab-php-oop-service-baseservice-dao.md) — Guide pratique pour créer une catégorie de bout en bout avec PHP, Fetch et JSON.
-- [Présentation du lab](labs/php-oop-service-baseservice-dao.md) — Concepts, diagramme de classes et architecture.
-- [Todo du lab](labs/Todo-php-oop-service-baseservice-dao.md) — Étapes de réalisation et de validation.
+- [Lab PHP OOP : Service, BaseService et DAO](labs/Lab-php-oop-service-baseservice-dao.md) — Guide d'analyse et de compréhension de l'architecture; pas de CRUD complet à construire.
+- [Présentation du lab](labs/php-oop-service-baseservice-dao.md) — Présentation avec diagramme, workflow et notes orales A1.
+- [Todo du lab](labs/Todo-php-oop-service-baseservice-dao.md) — Étapes d'analyse, de présentation et de validation.

@@ -1,39 +1,42 @@
-# Todo : Lab PHP OOP Service, BaseService et DAO
+# Todo : Lab PHP OOP — Service, BaseService et DAO
 
-## Phase 1 — Préparation
+## Phase 1 — Cadrage
 
-- [ ] Vérifier PHP 8.1 ou plus récent avec `php -v`.
-- [ ] Créer l'arborescence du projet et le fichier `storage/categories.json` contenant `[]`.
-- [ ] Relire le schéma et savoir expliquer le rôle du Controller, Service, DAO et Entity.
+- [ ] Lire le brief dans `.agent/README.md`.
+- [ ] Compléter le nom de l'apprenant et du projet fil rouge.
+- [ ] Reformuler l'objectif : comprendre et expliquer l'architecture.
+- [ ] Confirmer que le lab n'a pas pour objectif de construire un CRUD complet.
 
-## Phase 2 — Architecture PHP
+## Phase 2 — Compréhension des notions
 
-- [ ] Créer l'Entity `Category`.
-- [ ] Créer `CategoryDAO` avec `findAll()` et `save()`.
-- [ ] Créer `BaseService` avec les méthodes communes.
-- [ ] Créer `CategoryService extends BaseService` et appliquer les règles métier.
-- [ ] Créer `CategoryController` et lui faire appeler le Service.
-- [ ] Vérifier que seul le DAO lit et écrit le fichier JSON.
+- [ ] Définir classe, objet et encapsulation avec ses propres mots.
+- [ ] Expliquer le rôle du Service.
+- [ ] Expliquer le rôle du BaseService et pourquoi un Service en hérite.
+- [ ] Expliquer le rôle du DAO et du stockage.
+- [ ] Décrire le principe de séparation des responsabilités.
 
-## Phase 3 — Flux HTTP et navigateur
+## Phase 3 — Analyse de l'architecture
 
-- [ ] Créer le point d'entrée HTTP `public/index.php`.
-- [ ] Gérer les réponses `201`, `400`, `404`, `422` et `500`.
-- [ ] Créer le formulaire dans `public/index.html`.
-- [ ] Envoyer les données avec `fetch()` et afficher le résultat ou l'erreur.
-- [ ] Lancer le serveur PHP et créer une catégorie depuis le navigateur.
+- [ ] Compléter le diagramme Controller, CategoryService, BaseService et CategoryDAO.
+- [ ] Analyser les exemples PHP fournis pour `BaseService`.
+- [ ] Analyser les exemples PHP fournis pour `CategoryService`.
+- [ ] Analyser les exemples PHP fournis pour `CategoryDAO`.
+- [ ] Suivre le workflow jusqu'au Data Storage.
+- [ ] Comparer cette architecture à du PHP regroupé dans une seule page.
+- [ ] Donner des avantages et une limite de cette organisation.
 
-## Phase 4 — Vérifications
+## Phase 4 — Skill IA et présentation
 
-- [ ] Vérifier que la catégorie est présente dans `storage/categories.json`.
-- [ ] Vérifier qu'un nom vide reçoit une réponse `422`.
-- [ ] Vérifier qu'un doublon sans différence de casse reçoit une réponse `422`.
-- [ ] Vérifier qu'un JSON invalide reçoit une réponse `400`.
-- [ ] Expliquer pourquoi le fichier JSON convient à l'exercice, mais pas à une application multi-utilisateur.
+- [ ] Confirmer le besoin du skill `php-oop-architecture-tutor`.
+- [ ] Utiliser `plugin-dev` pour le concevoir, si demandé.
+- [ ] Compléter la page de garde et les informations du projet fil rouge.
+- [ ] Compléter les exemples et champs laissés à personnaliser dans les slides.
+- [ ] Vérifier que chaque slide contient exactement trois phrases simples dans ses notes A1.
 
-## Phase 5 — Présentation et défi
+## Phase 5 — Défi et validation
 
-- [ ] Relire [la présentation](php-oop-service-baseservice-dao.md).
-- [ ] Faire une démonstration de la création et du rejet d'un doublon.
-- [ ] Expliquer l'héritage de `BaseService` par `CategoryService`.
-- [ ] Réaliser le mini-défi : refuser un nom de plus de 80 caractères.
+- [ ] Présenter les rôles des classes sans lire les définitions.
+- [ ] Expliquer l'héritage entre `CategoryService` et `BaseService`.
+- [ ] Décrire le trajet d'une opération de catégorie jusqu'au stockage.
+- [ ] Expliquer un avantage et une limite de cette séparation.
+- [ ] Répondre au mini-défi du formateur.
