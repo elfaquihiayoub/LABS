@@ -33,7 +33,7 @@ Je parle des catégories.
 - Concepts et responsabilités des classes
 - Exemples PHP : BaseService, CategoryService et CategoryDAO
 - Workflow entre Controller et stockage
-- Bilan et mini-défi
+- Bilan e
 
 <!--
 Je présente le contexte du lab.
@@ -276,7 +276,7 @@ Le DAO écrit les données.
 - **Comparaison :** PHP regroupé dans une page ou classes séparées
 - **Limite :** cette architecture peut être excessive pour un petit script
 
-**Mini-défi :** quelle classe modifier si la règle métier change ? Et si le stockage change ?
+
 
 <!--
 Chaque classe a un rôle.
