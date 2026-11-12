@@ -40,7 +40,7 @@ Use this skill when you need to generate, update, or adapt lab content based on 
 - Do not run Git commands if the user explicitly forbids it.
 - Do not invent the student's problem, chosen solution, or project history.
 - Write in simple French (A1 level) and align the content with what is actually present in the README.
-- Always identify the student as `Mohammed Yassir Mesbahi` and the supervisor as `ES-SARRAJ Fouad` on the title slide of the presentation. Never leave a `[Name]` placeholder for them.
+- Always identify the student as `El Faquihi Ayoub` and the supervisor as `ES-SARRAJ Fouad` on the title slide of the presentation. Never leave a `[Name]` placeholder for them.
 - Keep the README, the presentation, and the example tutorials in the same simple French register so the whole lab reads as one document.
 
 ## Completion checklist
@@ -49,7 +49,6 @@ Use this skill when you need to generate, update, or adapt lab content based on 
 - The README and the presentation plan are consistent with the actual lab scope.
 - The presentation outline is placed in `presentation.md` only.
 - The lab content is written in simple French (A1 level) and adapted to the real README content.
-- The presentation names the student `Mohammed Yassir Mesbahi` and the supervisor `ES-SARRAJ Fouad`.
+- The presentation names the student `El Faquihi Ayoub` and the supervisor `ES-SARRAJ Fouad`.
 - The Quick Start and Hello World are included only when relevant to a technical lab.
 - Unverified student-specific sections are clearly marked as to be completed rather than stated as fact.
-
