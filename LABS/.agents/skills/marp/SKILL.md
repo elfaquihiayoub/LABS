@@ -11,6 +11,13 @@ Use this skill to create or edit a Marp presentation file (`.md`).
 
 - Start with valid YAML frontmatter containing `marp: true`, a theme, pagination, and the `16:9` format.
 - Separate each slide with `---`.
+- Keep presentations to a maximum of 14 slides unless the user asks for a different limit.
+- Include a numbered page plan that lists each slide number and title.
+- Add exactly three presenter notes to every slide as HTML comments so they do not appear on the slide:
+  1. An opening sentence to introduce the slide.
+  2. The main message of the slide. This must be the second note.
+  3. A short transition to the next slide; on the last slide, use a closing reminder instead.
+- Write all three presenter notes in simple A1-level French when the presentation is in French. Use short, clear sentences.
 - For a lab, follow this order:
   1. Lab title, then the student `El Faquihi Ayoub` and the supervisor `ES-SARRAJ Fouad`.
   2. Presentation plan.
