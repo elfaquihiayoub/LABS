@@ -12,7 +12,7 @@ Use this skill to create or edit a Marp presentation file (`.md`).
 - Start with valid YAML frontmatter containing `marp: true`, a theme, pagination, and the `16:9` format.
 - Separate each slide with `---`.
 - Keep presentations to a maximum of 14 slides unless the user asks for a different limit.
-- Include a numbered page plan that lists each slide number and title.
+- Include a presentation plan with major section titles only. Do not include page or slide numbers unless the user asks for them.
 - Add exactly three presenter notes to every slide as HTML comments so they do not appear on the slide:
   1. An opening sentence to introduce the slide.
   2. The main message of the slide. This must be the second note.
@@ -26,7 +26,7 @@ Use this skill to create or edit a Marp presentation file (`.md`).
   5. Real problem provided by the student.
   6. Solution and demonstrations; add practical slides if needed.
 - For a lab plan, use the sections: Introduction & Technical Stack, Definitions, Problem, Solution. In French: Introduction et stack technique, Définitions, Problème, Solution.
-- Do not add a conclusion or acknowledgments; end with the solution or deliverable.
+- Do not add a conclusion or acknowledgments unless the user explicitly requests them; otherwise, end with the solution or deliverable.
 
 ## Accuracy and content
 
@@ -39,5 +39,7 @@ Use this skill to create or edit a Marp presentation file (`.md`).
 ## Readability
 
 - Maintain a consistent visual hierarchy, sufficient contrast, and an appropriate amount of text on each slide.
+- Prevent content overflow: keep each slide focused on one idea, use short bullets and concise labels, and move explanations into the presenter notes when they are not essential on screen. Prefer splitting or simplifying dense content over reducing text size.
+- Before finishing, review every slide for overflow, crowded tables, long lines, and readability at presentation size. Keep tables small and use short cell text.
 - Alternate dark and light slides when the theme allows it; use `<!-- _class: light -->` for a light slide.
 - Declare the language for code blocks (`bash`, `php`, `html`, etc.) and align Markdown table columns explicitly.

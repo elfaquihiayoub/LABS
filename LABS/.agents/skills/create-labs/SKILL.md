@@ -18,6 +18,7 @@ Use this skill when you need to generate, update, or adapt lab content based on 
 - If a file named `template-plan.md` is missing, search for the workspace's generic plan and use it without claiming it has a different name.
 - Keep the existing lab title/slug unchanged in the `lab-*` format. Do not replace it with a reformulated title.
 - Adapt the wording to the real objectives, concepts, and constraints described in the README.
+- On every presentation cover, include both the Solicode and OFPPT logos. Find and reuse the existing logo image files in the workspace; do not recreate or download replacement logos. Copy them into the lab's `assets/` folder and use relative paths so the presentation works independently of other lab folders. Preserve each logo's aspect ratio; trim excessive transparent margins only when needed for balanced display.
 
 ## Workflow
 
@@ -41,6 +42,7 @@ Use this skill when you need to generate, update, or adapt lab content based on 
 - Do not invent the student's problem, chosen solution, or project history.
 - Write in simple French (A1 level) and align the content with what is actually present in the README.
 - Always identify the student as `El Faquihi Ayoub` and the supervisor as `ES-SARRAJ Fouad` on the title slide of the presentation. Never leave a `[Name]` placeholder for them.
+- Add the Solicode and OFPPT logos to the title slide of every lab presentation. Verify that both images resolve in the presentation preview.
 - Keep the README, the presentation, and the example tutorials in the same simple French register so the whole lab reads as one document.
 
 ## Completion checklist
@@ -50,5 +52,6 @@ Use this skill when you need to generate, update, or adapt lab content based on 
 - The presentation outline is placed in `presentation.md` only.
 - The lab content is written in simple French (A1 level) and adapted to the real README content.
 - The presentation names the student `El Faquihi Ayoub` and the supervisor `ES-SARRAJ Fouad`.
+- The title slide shows the existing Solicode and OFPPT logos, and both image paths resolve.
 - The Quick Start and Hello World are included only when relevant to a technical lab.
 - Unverified student-specific sections are clearly marked as to be completed rather than stated as fact.
