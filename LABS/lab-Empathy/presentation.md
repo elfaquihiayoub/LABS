@@ -249,19 +249,23 @@ Ce nombre est un exemple, pas un résultat de recherche.
 
 ---
 
-# TECHNIQUE 04 — LA CARTE D'EMPATHIE
+# TECHNIQUE 04 — LA PERSONA
 
-| **Il dit** | **Il pense** |
-|---|---|
-| Ses paroles | Ses pensées |
-| **Il fait** | **Il ressent** |
-| Ses actions | Ses émotions |
+Un profil simple qui représente un utilisateur type.
 
-**Visuel :** quatre cases à remplir avec les notes.
+**Informations :** profil, objectifs, habitudes, problèmes et besoins.
 
-<!-- Option 1 : La carte d'empathie permet de mieux comprendre l'utilisateur. Elle contient quatre parties : il dit, il pense, il fait et il ressent. -->
-<!-- Option 2 : Nous utilisons cette carte pour organiser les informations de notre recherche. -->
-<!-- Option 3 : Elle nous aide à comprendre les paroles, les actions et les émotions de l'utilisateur. -->
+**Création :**
+
+```text
+Interviews + Observation → Analyse → Persona
+```
+
+**Visuel :** une fiche avec photo, profil, objectifs et problèmes.
+
+<!-- Option 1 : La persona est un profil simple qui représente un utilisateur type. -->
+<!-- Option 2 : Nous créons une persona avec les informations des interviews et de l'observation. -->
+<!-- Option 3 : La fiche montre le profil, les objectifs, les habitudes, les problèmes et les besoins. -->
 
 ---
 
@@ -283,24 +287,27 @@ Ce nombre est un exemple, pas un résultat de recherche.
 
 ---
 
-# APPLICATION PRATIQUE — AUDITEURS
+# APPLICATION PRATIQUE — CRÉER NOTRE PERSONA
 
-> **Exemple entièrement fictif. Ce ne sont pas de vrais résultats.**
+> **Exemple entièrement fictif : AMINE — AUDITEUR**
 
-| Réponse fictive | Besoin possible |
+| Profil | Objectifs |
 |---|---|
-| « Je trouve difficilement un thème. » | Chercher par thème. |
-| « Je veux connaître la durée. » | Voir la durée. |
-| « Je préfère écouter en français. » | Voir la langue. |
+| Étudiant et amateur de podcasts. | Trouver des podcasts intéressants. |
 
-| **DIT** | **PENSE — hypothèse** |
+| Habitudes | Problèmes |
 |---|---|
-| « Je trouve difficilement un thème. » | « Je veux une recherche facile. » |
-| **FAIT** : cherche sur plusieurs sites. | **RESSENT** : frustration possible; à vérifier. |
+| Recherche par thème et par langue. | Difficulté à trouver des épisodes. |
 
-<!-- Option 1 : Exemple fictif : un auditeur a des difficultés avec la recherche par thème, la langue et la durée. Ces résultats ne viennent pas d'une vraie interview. -->
-<!-- Option 2 : Dans cet exemple fictif, l'auditeur perd du temps pour trouver un podcast. Il a besoin d'une recherche plus simple. -->
-<!-- Option 3 : Avec la carte d'empathie, nous comprenons ce que l'auditeur dit, pense, fait et ressent. Les sentiments doivent être vérifiés avec de vrais utilisateurs. -->
+**Besoin :** une recherche simple et rapide.
+
+**Source fictive :** entretiens et observation simulés pour l'exercice.
+
+**Visuel :** fiche persona avec photo, profil, objectifs et problèmes.
+
+<!-- Option 1 : Voici Amine, une persona fictive pour notre annuaire de podcasts. -->
+<!-- Option 2 : Son profil, ses objectifs, ses habitudes et ses problèmes viennent d'un scénario inventé. -->
+<!-- Option 3 : La source est une simulation; il faut de vraies interviews et observations pour créer une vraie persona. -->
 
 ---
 
