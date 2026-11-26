@@ -1,27 +1,36 @@
-# OCP : étendre sans modifier
+# OCP : ajouter une règle de recherche
 
 ## Objectif
 
-Le code doit accepter de nouvelles fonctions.
-On évite de modifier le code déjà testé pour chaque ajout.
+On doit pouvoir ajouter une fonction sans réécrire le code déjà testé.
 
-## Exemple du catalogue
+## Dans le catalogue de podcasts
 
-`PodcastSearch` cherche les podcasts.
-Il utilise des règles qui suivent `PodcastFilter`.
-`CategoryFilter` et `TitleFilter` sont deux règles séparées.
+La page du catalogue peut chercher par catégorie et par titre.
 
-On peut ajouter un autre filtre sans réécrire `PodcastSearch`.
+- `PodcastDirectory` parcourt la liste.
+- `PodcastFilter` décrit une règle de recherche.
+- `CategoryFilter` cherche une catégorie.
+- `TitleFilter` cherche un mot dans le titre.
 
-## Test
+La classe `PodcastDirectory` utilise chaque filtre de la même façon.
+Pour ajouter un filtre, on crée une nouvelle classe qui suit `PodcastFilter`.
+La classe `PodcastDirectory` reste inchangée.
+
+## Lancer le test
+
+Depuis la racine du dépôt :
 
 ```bash
-php -d xdebug.mode=off 02-ocp/example.php
+php -d xdebug.mode=off LABS/lab-code-solid/02-ocp/example.php
 ```
 
-Les deux lignes `[OK]` confirment que les filtres se combinent et trouvent le podcast attendu.
+La recherche demande la catégorie `Développement` et le mot `Laravel`.
+Le résultat contient seulement le podcast `PHP et Laravel`.
+Chaque résultat de test doit afficher `[OK]`.
 
 ## Exercice
 
-Ajoutez un filtre par mot dans la description.
-Laissez `PodcastSearch` inchangé.
+Ajoutez un filtre par nom d'animateur.
+Faites-le suivre `PodcastFilter`.
+Ne changez pas `PodcastDirectory`.

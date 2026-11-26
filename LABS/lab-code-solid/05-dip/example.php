@@ -13,27 +13,29 @@ final class Podcast
 
 interface PodcastRepository
 {
-    public function save(Podcast $podcast): void;
+    public function add(Podcast $podcast): void;
 
-    public function findAll(): array;
+    /** @return list<Podcast> */
+    public function all(): array;
 }
 
 final class InMemoryPodcastRepository implements PodcastRepository
 {
+    /** @var list<Podcast> */
     private array $podcasts = [];
 
-    public function save(Podcast $podcast): void
+    public function add(Podcast $podcast): void
     {
         $this->podcasts[] = $podcast;
     }
 
-    public function findAll(): array
+    public function all(): array
     {
         return $this->podcasts;
     }
 }
 
-final class PodcastCatalogService
+final class AddPodcastToDirectory
 {
     public function __construct(private readonly PodcastRepository $repository)
     {
@@ -41,15 +43,7 @@ final class PodcastCatalogService
 
     public function add(string $title, string $host): void
     {
-        $this->repository->save(new Podcast($title, $host));
-    }
-
-    public function listTitles(): array
-    {
-        return array_map(
-            static fn (Podcast $podcast): string => $podcast->title,
-            $this->repository->findAll()
-        );
+        $this->repository->add(new Podcast($title, $host));
     }
 }
 
@@ -63,8 +57,9 @@ function check(bool $condition, string $message): void
 }
 
 $repository = new InMemoryPodcastRepository();
-$catalog = new PodcastCatalogService($repository);
-$catalog->add('PHP au quotidien', 'Ayoub');
+$addPodcast = new AddPodcastToDirectory($repository);
+$addPodcast->add('PHP pour débuter', 'Ayoub');
 
-check($catalog->listTitles() === ['PHP au quotidien'], 'le service enregistre et relit un podcast');
-check($repository instanceof PodcastRepository, 'le dépôt respecte l’interface attendue');
+$savedPodcasts = $repository->all();
+check(count($savedPodcasts) === 1, 'le service ajoute un podcast dans le catalogue');
+check($savedPodcasts[0]->title === 'PHP pour débuter', 'le dépôt contient le bon podcast');

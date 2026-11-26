@@ -1,25 +1,32 @@
-# DIP : dépendre d'une interface
+# DIP : enregistrer un podcast via une interface
 
 ## Objectif
 
-Le service principal ne doit pas choisir une classe de stockage précise.
-Il utilise une interface que plusieurs stockages peuvent respecter.
+Le service de l'application dépend d'une interface.
+Il ne dépend pas d'une classe de stockage précise.
 
-## Exemple du catalogue
+## Dans le catalogue de podcasts
 
-`PodcastCatalogService` dépend de `PodcastRepository`.
-`InMemoryPodcastRepository` est un dépôt de test en mémoire.
-Un autre dépôt pourrait utiliser une base de données sans changer le service.
+- `AddPodcastToDirectory` ajoute un podcast.
+- Il utilise le contrat `PodcastRepository`.
+- `InMemoryPodcastRepository` garde les données en mémoire pour le test.
 
-## Test
+Un autre dépôt pourrait enregistrer les podcasts dans une base de données.
+Le service pourrait garder le même code.
+
+## Lancer le test
+
+Depuis la racine du dépôt :
 
 ```bash
-php -d xdebug.mode=off 05-dip/example.php
+php -d xdebug.mode=off LABS/lab-code-solid/05-dip/example.php
 ```
 
-Deux lignes `[OK]` confirment que le service enregistre et relit un podcast.
+Le test ajoute `PHP pour débuter` et vérifie que le dépôt le contient.
+Chaque résultat doit afficher `[OK]`.
 
 ## Exercice
 
-Écrivez un autre dépôt qui lit les podcasts depuis un fichier.
+Créez un dépôt qui enregistre les podcasts dans une base de données.
 Faites-le respecter `PodcastRepository`.
+N'ajoutez pas de code de base de données dans `AddPodcastToDirectory`.

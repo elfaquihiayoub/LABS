@@ -2,45 +2,44 @@
 
 declare(strict_types=1);
 
-abstract class AudioEpisode
+abstract class Podcast
 {
     public function __construct(
         public readonly string $title,
-        public readonly int $durationInSeconds,
-        public readonly string $streamUrl
+        public readonly string $host
     ) {
-        if ($title === '' || $durationInSeconds <= 0 || filter_var($streamUrl, FILTER_VALIDATE_URL) === false) {
-            throw new InvalidArgumentException('Un épisode doit avoir un titre, une durée positive et une URL valide.');
+        if (trim($title) === '' || trim($host) === '') {
+            throw new InvalidArgumentException('Le titre et le nom de l’animateur sont obligatoires.');
         }
     }
 
-    abstract public function getSourceName(): string;
+    abstract public function getFormat(): string;
 
-    public function play(): string
+    public function getDirectoryLine(): string
     {
-        return $this->title . ' (' . $this->durationInSeconds . ' s) : ' . $this->streamUrl;
+        return $this->title . ' — ' . $this->host . ' (' . $this->getFormat() . ')';
     }
 }
 
-final class LocalEpisode extends AudioEpisode
+final class InterviewPodcast extends Podcast
 {
-    public function getSourceName(): string
+    public function getFormat(): string
     {
-        return 'fichier local';
+        return 'Interview';
     }
 }
 
-final class ImportedEpisode extends AudioEpisode
+final class SoloPodcast extends Podcast
 {
-    public function getSourceName(): string
+    public function getFormat(): string
     {
-        return 'flux importé';
+        return 'Solo';
     }
 }
 
-function playEpisode(AudioEpisode $episode): string
+function showPodcast(Podcast $podcast): string
 {
-    return $episode->getSourceName() . ' - ' . $episode->play();
+    return $podcast->getDirectoryLine();
 }
 
 function check(bool $condition, string $message): void
@@ -52,13 +51,13 @@ function check(bool $condition, string $message): void
     echo '[OK] ' . $message . PHP_EOL;
 }
 
-$episodes = [
-    new LocalEpisode('PHP et les objets', 720, 'https://audio.example.test/php-objets.mp3'),
-    new ImportedEpisode('Le web en bref', 480, 'https://radio.example.test/web.mp3'),
+$podcasts = [
+    new InterviewPodcast('Le web en bref', 'Ayoub'),
+    new SoloPodcast('PHP simplement', 'Sara'),
 ];
 
-$playbackMessages = array_map('playEpisode', $episodes);
+$directoryLines = array_map('showPodcast', $podcasts);
 
-check(count($playbackMessages) === 2, 'le lecteur accepte les deux types d’épisodes');
-check(str_contains($playbackMessages[0], 'fichier local'), 'l’épisode local respecte le contrat');
-check(str_contains($playbackMessages[1], 'flux importé'), 'l’épisode importé respecte le contrat');
+check(count($directoryLines) === 2, 'la fonction de liste accepte les deux formats');
+check(str_contains($directoryLines[0], 'Interview'), 'le podcast interview garde son format');
+check(str_contains($directoryLines[1], 'Solo'), 'le podcast solo garde son format');

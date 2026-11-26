@@ -7,27 +7,27 @@ final class Podcast
     public function __construct(
         public readonly string $title,
         public readonly string $host,
-        public readonly int $durationInSeconds
+        public readonly int $durationInMinutes
     ) {
     }
 }
 
 final class PodcastValidator
 {
-    public function validate(array $input): array
+    public function validate(string $title, string $host, int $durationInMinutes): array
     {
         $errors = [];
 
-        if (trim((string) ($input['title'] ?? '')) === '') {
+        if (trim($title) === '') {
             $errors[] = 'Le titre est obligatoire.';
         }
 
-        if (trim((string) ($input['host'] ?? '')) === '') {
+        if (trim($host) === '') {
             $errors[] = 'Le nom de l’animateur est obligatoire.';
         }
 
-        if (!isset($input['duration']) || (int) $input['duration'] <= 0) {
-            $errors[] = 'La durée doit être positive.';
+        if ($durationInMinutes <= 0) {
+            $errors[] = 'La durée doit être supérieure à zéro.';
         }
 
         return $errors;
@@ -44,10 +44,11 @@ function check(bool $condition, string $message): void
 }
 
 $validator = new PodcastValidator();
-$validInput = ['title' => 'PHP simple', 'host' => 'Ayoub', 'duration' => 600];
-$invalidInput = ['title' => ' ', 'host' => '', 'duration' => 0];
-$podcast = new Podcast('PHP simple', 'Ayoub', 600);
+$errors = $validator->validate('PHP pour débuter', 'Ayoub', 20);
+check($errors === [], 'les informations du podcast sont valides');
 
-check($validator->validate($validInput) === [], 'les données valides sont acceptées');
-check(count($validator->validate($invalidInput)) === 3, 'les trois erreurs sont détectées');
-check($podcast->title === 'PHP simple', 'Podcast conserve les données du podcast');
+$podcast = new Podcast('PHP pour débuter', 'Ayoub', 20);
+check($podcast->title === 'PHP pour débuter', 'Podcast conserve les informations du podcast');
+
+$errors = $validator->validate('', ' ', 0);
+check(count($errors) === 3, 'le formulaire signale les trois informations manquantes ou invalides');

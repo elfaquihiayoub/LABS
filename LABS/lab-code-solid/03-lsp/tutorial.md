@@ -1,27 +1,35 @@
-# LSP : respecter le contrat parent
+# LSP : utiliser les types de podcasts
 
 ## Objectif
 
-Une classe enfant doit pouvoir remplacer sa classe parent.
-Elle doit garder les règles attendues par le code qui l'utilise.
+Une classe enfant doit respecter les règles de sa classe parent.
+Le code qui accepte le parent doit aussi accepter ses classes enfants.
 
-## Exemple du catalogue
+## Dans le catalogue de podcasts
 
-`AudioEpisode` définit les informations et la lecture d'un épisode.
-`LocalEpisode` et `ImportedEpisode` sont deux types d'épisodes.
-Le lecteur `playEpisode` accepte les deux sans connaître leur type exact.
+Le catalogue contient des podcasts interview et des podcasts solo.
 
-Les deux classes gardent les mêmes règles : un titre, une durée positive et une URL valide.
+- `Podcast` définit le titre, l'animateur et la ligne de catalogue.
+- `InterviewPodcast` indique le format `Interview`.
+- `SoloPodcast` indique le format `Solo`.
+- `showPodcast()` accepte un objet `Podcast`.
 
-## Test
+La fonction de catalogue n'a pas besoin de connaître la classe exacte.
+Les deux formats gardent les informations attendues.
+
+## Lancer le test
+
+Depuis la racine du dépôt :
 
 ```bash
-php -d xdebug.mode=off 03-lsp/example.php
+php -d xdebug.mode=off LABS/lab-code-solid/03-lsp/example.php
 ```
 
-Trois lignes `[OK]` confirment que le lecteur et les deux types respectent le contrat.
+Le test vérifie que la fonction affiche les deux formats.
+Chaque résultat doit afficher `[OK]`.
 
 ## Exercice
 
-Ajoutez un épisode venant d'un autre service.
-Vérifiez qu'il fonctionne avec `playEpisode`.
+Ajoutez la classe `NewsPodcast`.
+Faites-la hériter de `Podcast`.
+Vérifiez qu'elle fonctionne avec `showPodcast()`.

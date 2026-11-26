@@ -47,11 +47,11 @@ Un test en échec arrête le programme avec une erreur.
 
 | Principe | Objectif | Exemple du catalogue |
 | --- | --- | --- |
-| **SRP** — Single Responsibility Principle | Une classe a une seule responsabilité. | Séparer les données d'un podcast et la validation du formulaire. |
-| **OCP** — Open/Closed Principle | Ajouter une règle sans modifier le code déjà testé. | Ajouter des filtres de recherche interchangeables. |
-| **LSP** — Liskov Substitution Principle | Une classe enfant peut remplacer sa classe parent. | Lire un épisode local ou importé avec le même service. |
-| **ISP** — Interface Segregation Principle | Une classe utilise seulement les méthodes dont elle a besoin. | Séparer la lecture et l'écriture du catalogue. |
-| **DIP** — Dependency Inversion Principle | Le service dépend d'une interface, pas d'une classe précise. | Enregistrer un podcast par une interface de dépôt. |
+| **SRP** — Single Responsibility Principle | Une classe a une seule responsabilité. | Séparer les données du podcast et la validation du formulaire d'ajout. |
+| **OCP** — Open/Closed Principle | Ajouter une règle sans modifier le code déjà testé. | Chercher les podcasts avec des filtres interchangeables. |
+| **LSP** — Liskov Substitution Principle | Une classe enfant respecte le contrat de sa classe parent. | Afficher un podcast interview ou solo dans la même liste. |
+| **ISP** — Interface Segregation Principle | Une classe utilise seulement les méthodes dont elle a besoin. | Donner la lecture à la page publique et l'écriture à l'admin. |
+| **DIP** — Dependency Inversion Principle | Le service dépend d'une interface, pas d'une classe précise. | Ajouter au catalogue avec un dépôt interchangeable. |
 
 ## Résultats
 

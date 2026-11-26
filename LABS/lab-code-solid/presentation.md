@@ -168,35 +168,35 @@ Exemple : `02-ocp/example.php`
 
 ---
 
-# L — RESPECTER LE CONTRAT
+# L — GARDER LE MÊME CONTRAT
 
 ## LSP : Liskov Substitution Principle
 
 **Objectif :** une classe enfant peut remplacer sa classe parent.
 
-Le catalogue peut lire un épisode local ou importé.
+Le catalogue contient des podcasts interview et solo.
 
-- `AudioEpisode` définit les informations et la lecture.
-- `LocalEpisode` et `ImportedEpisode` respectent ce contrat.
-- `playEpisode()` accepte un `AudioEpisode`.
+- `Podcast` définit le titre, l'animateur et la ligne de catalogue.
+- `InterviewPodcast` et `SoloPodcast` sont deux types de podcast.
+- `showPodcast()` accepte un objet `Podcast`.
 
-Le lecteur n'a pas besoin de connaître le type précis.
+La fonction affiche les deux types sans changer.
 
 ---
 
 # LSP — LE TEST
 
 ```php
-function playEpisode(AudioEpisode $episode): string
+function showPodcast(Podcast $podcast): string
 {
-    return $episode->getSourceName() . ' - ' . $episode->play();
+    return $podcast->getDirectoryLine();
 }
 ```
 
-Le même lecteur fonctionne avec les deux types d'épisodes.
-Chaque épisode garde un titre, une durée positive et une URL valide.
+La même fonction affiche un podcast interview et un podcast solo.
+Chaque type garde le titre et le nom de l'animateur.
 
-**À retenir :** une classe enfant doit respecter les attentes de son parent.
+**À retenir :** une classe enfant doit respecter les règles de son parent.
 
 Exemple : `03-lsp/example.php`
 
@@ -213,15 +213,15 @@ Le catalogue sépare deux actions :
 - `PodcastReader` permet de lire les podcasts.
 - `PodcastWriter` permet d'en ajouter.
 
-La liste publique a seulement besoin de lire.
-Elle n'a donc pas besoin d'une fonction d'écriture.
+La page publique utilise seulement `PodcastReader`.
+La partie admin peut aussi ajouter un podcast avec `PodcastWriter`.
 
 ---
 
 # ISP — LE TEST
 
 ```php
-final class PodcastList
+final class PublicPodcastPage
 {
     public function __construct(
         private readonly PodcastReader $catalog
@@ -229,8 +229,8 @@ final class PodcastList
 }
 ```
 
-`PodcastList` reçoit un lecteur.
-Il n'a pas besoin d'un catalogue qui sait modifier les données.
+`PublicPodcastPage` reçoit un lecteur.
+La page n'a pas besoin d'une fonction pour modifier les données.
 
 **À retenir :** créer de petites interfaces selon les besoins.
 
@@ -244,7 +244,7 @@ Exemple : `04-isp/example.php`
 
 **Objectif :** le service métier dépend d'une interface, pas d'un stockage précis.
 
-- `PodcastCatalogService` utilise `PodcastRepository`.
+- `AddPodcastToDirectory` utilise `PodcastRepository`.
 - Le dépôt en mémoire respecte cette interface.
 - Un dépôt de base de données peut aussi la respecter.
 
@@ -256,12 +256,12 @@ Le service n'a pas besoin de connaître le type de stockage.
 
 ```php
 $repository = new InMemoryPodcastRepository();
-$catalog = new PodcastCatalogService($repository);
+$addPodcast = new AddPodcastToDirectory($repository);
 
-$catalog->add('PHP au quotidien', 'Ayoub');
+$addPodcast->add('PHP pour débuter', 'Ayoub');
 ```
 
-Le service enregistre et relit le podcast via le contrat.
+Le service enregistre le podcast via le contrat.
 On peut remplacer le dépôt sans réécrire le service.
 
 **À retenir :** le service connaît l'interface, pas les détails du stockage.
@@ -276,7 +276,7 @@ Exemple : `05-dip/example.php`
 | --- | --- | --- |
 | SRP | La classe a-t-elle un seul rôle ? | Données et validation séparées |
 | OCP | Peut-on ajouter une règle sans réécrire le moteur ? | Filtres de recherche |
-| LSP | Le type enfant respecte-t-il le contrat ? | Épisode local ou importé |
+| LSP | Le type enfant respecte-t-il le contrat ? | Podcast interview ou solo |
 | ISP | L'interface contient-elle seulement les actions utiles ? | Lire séparé d'écrire |
 | DIP | Le service dépend-il d'un contrat ? | Dépôt défini par interface |
 

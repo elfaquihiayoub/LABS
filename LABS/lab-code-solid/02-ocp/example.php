@@ -40,26 +40,33 @@ final class TitleFilter implements PodcastFilter
     }
 }
 
-final class PodcastSearch
+final class PodcastDirectory
 {
-    public function find(array $podcasts, array $filters): array
+    /**
+     * @param list<Podcast> $podcasts
+     * @param list<PodcastFilter> $filters
+     * @return list<Podcast>
+     */
+    public function search(array $podcasts, array $filters): array
     {
-        return array_values(array_filter(
-            $podcasts,
-            static function (Podcast $podcast) use ($filters): bool {
-                foreach ($filters as $filter) {
-                    if (!$filter instanceof PodcastFilter) {
-                        throw new InvalidArgumentException('Chaque filtre doit respecter PodcastFilter.');
-                    }
+        $results = [];
 
-                    if (!$filter->matches($podcast)) {
-                        return false;
-                    }
+        foreach ($podcasts as $podcast) {
+            $matchesAllFilters = true;
+
+            foreach ($filters as $filter) {
+                if (!$filter->matches($podcast)) {
+                    $matchesAllFilters = false;
+                    break;
                 }
-
-                return true;
             }
-        ));
+
+            if ($matchesAllFilters) {
+                $results[] = $podcast;
+            }
+        }
+
+        return $results;
     }
 }
 
@@ -78,11 +85,11 @@ $podcasts = [
     new Podcast('PHP et Laravel', 'Développement'),
 ];
 
-$search = new PodcastSearch();
-$results = $search->find($podcasts, [
+$directory = new PodcastDirectory();
+$results = $directory->search($podcasts, [
     new CategoryFilter('Développement'),
     new TitleFilter('Laravel'),
 ]);
 
-check(count($results) === 1, 'les filtres sont appliqués ensemble');
-check($results[0]->title === 'PHP et Laravel', 'le bon podcast est trouvé');
+check(count($results) === 1, 'la recherche applique la catégorie et le titre');
+check($results[0]->title === 'PHP et Laravel', 'le catalogue retourne le bon podcast');

@@ -6,13 +6,14 @@ final class Podcast
 {
     public function __construct(
         public readonly string $title,
-        public readonly string $category
+        public readonly string $host
     ) {
     }
 }
 
 interface PodcastReader
 {
+    /** @return list<Podcast> */
     public function all(): array;
 }
 
@@ -21,8 +22,11 @@ interface PodcastWriter
     public function add(Podcast $podcast): void;
 }
 
-final class PublicPodcastCatalog implements PodcastReader
+final class PublicPodcastDirectory implements PodcastReader
 {
+    /**
+     * @param list<Podcast> $podcasts
+     */
     public function __construct(private readonly array $podcasts)
     {
     }
@@ -33,8 +37,9 @@ final class PublicPodcastCatalog implements PodcastReader
     }
 }
 
-final class InMemoryPodcastCatalog implements PodcastReader, PodcastWriter
+final class AdminPodcastDirectory implements PodcastReader, PodcastWriter
 {
+    /** @var list<Podcast> */
     private array $podcasts = [];
 
     public function add(Podcast $podcast): void
@@ -48,18 +53,22 @@ final class InMemoryPodcastCatalog implements PodcastReader, PodcastWriter
     }
 }
 
-final class PodcastList
+final class PublicPodcastPage
 {
-    public function __construct(private readonly PodcastReader $catalog)
+    public function __construct(private readonly PodcastReader $directory)
     {
     }
 
+    /** @return list<string> */
     public function titles(): array
     {
-        return array_map(
-            static fn (Podcast $podcast): string => $podcast->title,
-            $this->catalog->all()
-        );
+        $titles = [];
+
+        foreach ($this->directory->all() as $podcast) {
+            $titles[] = $podcast->title;
+        }
+
+        return $titles;
     }
 }
 
@@ -72,12 +81,13 @@ function check(bool $condition, string $message): void
     echo '[OK] ' . $message . PHP_EOL;
 }
 
-$podcast = new Podcast('PHP facile', 'Développement');
-$publicCatalog = new PublicPodcastCatalog([$podcast]);
-$list = new PodcastList($publicCatalog);
+$publicDirectory = new PublicPodcastDirectory([
+    new Podcast('PHP pour débuter', 'Ayoub'),
+]);
+$page = new PublicPodcastPage($publicDirectory);
 
-check($list->titles() === ['PHP facile'], 'la liste lit un catalogue en lecture seule');
+check($page->titles() === ['PHP pour débuter'], 'la page publique lit les titres du catalogue');
 
-$editableCatalog = new InMemoryPodcastCatalog();
-$editableCatalog->add($podcast);
-check(count($editableCatalog->all()) === 1, 'le catalogue éditable lit et ajoute un podcast');
+$adminDirectory = new AdminPodcastDirectory();
+$adminDirectory->add(new Podcast('Laravel en pratique', 'Sara'));
+check(count($adminDirectory->all()) === 1, 'la partie admin peut ajouter un podcast');
