@@ -1,0 +1,57 @@
+Act as a Senior PHP Developer and VS Code Configuration Expert.
+
+I want you to install, configure, and verify a complete PHP debugging environment in my Windows machine using VS Code and Xdebug.
+
+### Objectives
+
+1. **Environment Detection**
+   - Detect whether PHP is installed.
+   - Identify the PHP executable path.
+   - Detect whether I use XAMPP, Laragon, or standalone PHP.
+   - Identify the active php.ini configuration.
+   - Check the installed PHP version and architecture.
+
+2. **Install Xdebug**
+   - Check whether Xdebug is already installed.
+   - Install the correct Xdebug version compatible with my PHP version and architecture.
+   - For XAMPP, use the correct PHP installation.
+   - Configure php.ini properly.
+   - Enable Xdebug with:
+     - xdebug.mode=debug
+     - xdebug.start_with_request=yes
+     - xdebug.client_port=9003
+     - xdebug.client_host=127.0.0.1
+
+3. **Configure VS Code**
+   - Install the PHP Debug extension by Xdebug.
+   - Create `.vscode/launch.json`.
+   - Configure the following debugging profiles:
+     - Listen for Xdebug
+     - Debug current PHP script
+   - Configure port 9003.
+   - Set appropriate path mappings if necessary.
+
+4. **Verification**
+   - Verify Xdebug using `php -v`.
+   - Verify Xdebug configuration using `php --ri xdebug`.
+   - Create a simple PHP test file.
+   - Test breakpoints, step over, step into, variables inspection, and call stack.
+
+### Important Rules
+- First inspect my environment before making changes.
+- Do not assume PHP or XAMPP installation paths.
+- Do not overwrite existing configurations without creating backups.
+- Do not install incompatible Xdebug versions.
+- Do not modify unrelated PHP settings.
+- Ask for permission before making system-level changes.
+- If automatic installation is impossible, provide exact manual steps.
+- Explain every important change.
+
+### Final Deliverables
+- Working PHP + Xdebug configuration.
+- Correct `.vscode/launch.json`.
+- PHP debugging test file.
+- Confirmation that breakpoints work.
+- A short report explaining what was installed and configured.
+
+Start by inspecting my current environment, then proceed step by step.
